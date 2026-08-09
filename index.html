@@ -1,19 +1,1490 @@
-```javascript
-/* =========================================================
-   KEN NXT SA — MAIN JAVASCRIPT
-   ========================================================= */
+<!DOCTYPE html>
+<html lang="en-ZA">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+        content="Ken NXT SA — Cape Town DJ bringing the vibe and creating the moment. Amapiano, Deep House, Afro House and R&B for clubs, lounges, markets, private events and weekends.">
+
+    <meta name="keywords"
+        content="Ken NXT SA, Cape Town DJ, DJ Cape Town, Amapiano DJ Cape Town, Afro House DJ, Deep House DJ, R&B DJ, Cape Town events, party DJ Cape Town">
+
+    <meta name="author"
+        content="Ken NXT SA">
+
+    <meta name="robots"
+        content="index, follow">
+
+    <meta name="theme-color"
+        content="#08050d">
+
+    <meta name="geo.region"
+        content="ZA-WC">
+
+    <meta name="geo.placename"
+        content="Cape Town, South Africa">
+
+    <meta name="format-detection"
+        content="telephone=yes">
+
+    <!-- Open Graph / Social Sharing -->
+
+    <meta property="og:type"
+        content="website">
+
+    <meta property="og:title"
+        content="Ken NXT SA | DJ | Cape Town">
+
+    <meta property="og:description"
+        content="Bringing the vibe. Creating the moment. Cape Town DJ specialising in Amapiano, Deep House, Afro House and R&B.">
+
+    <meta property="og:image"
+        content="ken-nxt-poster.jpg">
+
+    <meta property="og:locale"
+        content="en_ZA">
+
+    <meta name="twitter:card"
+        content="summary_large_image">
+
+    <meta name="twitter:title"
+        content="Ken NXT SA | DJ | Cape Town">
+
+    <meta name="twitter:description"
+        content="Cape Town DJ bringing the vibe and creating the moment.">
+
+    <meta name="twitter:image"
+        content="ken-nxt-poster.jpg">
+
+    <title>Ken NXT SA | DJ | Cape Town</title>
 
 
-/* =========================================================
-   DOM READY
-   ========================================================= */
+    <!-- Google Fonts -->
 
-document.addEventListener("DOMContentLoaded", () => {
+    <link rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Caveat:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
 
 
-    /* =====================================================
+    <!-- Website CSS -->
+
+    <link rel="stylesheet"
+        href="styles.css">
+
+
+    <!-- Modern additions -->
+
+    <style>
+
+        /* =========================
+           MODERN ENHANCEMENTS
+        ========================== */
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            overflow-x: hidden;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        .site-header {
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+        }
+
+
+        /* Scroll reveal */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition:
+                opacity .8s ease,
+                transform .8s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+
+        /* =========================
+           GENRE THUMBNAILS
+        ========================== */
+
+        .genre-card {
+            position: relative;
+            overflow: hidden;
+            isolation: isolate;
+            min-height: 330px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 28px;
+            border-radius: 22px;
+            background: #120d1a;
+        }
+
+        .genre-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -2;
+            background-size: cover;
+            background-position: center;
+            transition: transform .7s ease;
+        }
+
+        .genre-card::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background:
+                linear-gradient(
+                    to top,
+                    rgba(8,5,13,.98) 5%,
+                    rgba(8,5,13,.72) 45%,
+                    rgba(8,5,13,.12) 100%
+                );
+        }
+
+        .genre-card:hover::before {
+            transform: scale(1.08);
+        }
+
+        .genre-card:nth-child(1)::before {
+            background-image:
+                url("https://images.unsplash.com/photo-1571266028243-d220c5c4b4d4?auto=format&fit=crop&w=1000&q=85");
+        }
+
+        .genre-card:nth-child(2)::before {
+            background-image:
+                url("https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=1000&q=85");
+        }
+
+        .genre-card:nth-child(3)::before {
+            background-image:
+                url("https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=1000&q=85");
+        }
+
+        .genre-card:nth-child(4)::before {
+            background-image:
+                url("https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?auto=format&fit=crop&w=1000&q=85");
+        }
+
+        .genre-card h3,
+        .genre-card p,
+        .genre-card > span {
+            position: relative;
+            z-index: 2;
+        }
+
+        .genre-card > span {
+            color: #c58cff;
+            font-weight: 800;
+            letter-spacing: .12em;
+        }
+
+
+        /* =========================
+           EVENT THUMBNAILS
+        ========================== */
+
+        .event-item {
+            position: relative;
+            overflow: hidden;
+            isolation: isolate;
+            min-height: 270px;
+            border-radius: 20px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .event-item::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -2;
+            background-size: cover;
+            background-position: center;
+            transition: transform .7s ease;
+        }
+
+        .event-item::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background:
+                linear-gradient(
+                    to top,
+                    rgba(8,5,13,.98),
+                    rgba(8,5,13,.45),
+                    rgba(8,5,13,.05)
+                );
+        }
+
+        .event-item:hover::before {
+            transform: scale(1.08);
+        }
+
+        .event-item:nth-child(1)::before {
+            background-image:
+                url("https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1000&q=85");
+        }
+
+        .event-item:nth-child(2)::before {
+            background-image:
+                url("https://images.unsplash.com/photo-1488459716781-31db52582fe9?auto=format&fit=crop&w=1000&q=85");
+        }
+
+        .event-item:nth-child(3)::before {
+            background-image:
+                url("https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=1000&q=85");
+        }
+
+        .event-item:nth-child(4)::before {
+            background-image:
+                url("https://images.unsplash.com/photo-1521337581100-8ca9a73a5f79?auto=format&fit=crop&w=1000&q=85");
+        }
+
+
+        /* =========================
+           BOOKING IMPROVEMENTS
+        ========================== */
+
+        .booking-form {
+            position: relative;
+        }
+
+        .booking-form input,
+        .booking-form select,
+        .booking-form textarea {
+            transition:
+                border-color .25s ease,
+                box-shadow .25s ease,
+                transform .25s ease;
+        }
+
+        .booking-form input:focus,
+        .booking-form select:focus,
+        .booking-form textarea:focus {
+            outline: none;
+            transform: translateY(-1px);
+            box-shadow:
+                0 0 0 3px rgba(197,140,255,.12),
+                0 10px 30px rgba(0,0,0,.18);
+        }
+
+        .whatsapp-note {
+            margin-top: 12px;
+            opacity: .75;
+            font-size: .82rem;
+        }
+
+
+        /* =========================
+           CAPE TOWN MAP
+        ========================== */
+
+        .location-section {
+            padding-top: 80px;
+        }
+
+        .map-wrapper {
+            margin-top: 40px;
+            overflow: hidden;
+            border-radius: 24px;
+            border: 1px solid rgba(255,255,255,.08);
+            box-shadow:
+                0 30px 80px rgba(0,0,0,.35);
+            background: #100b16;
+        }
+
+        .map-wrapper iframe {
+            display: block;
+            width: 100%;
+            height: 430px;
+            border: 0;
+            filter: grayscale(.15) contrast(1.05);
+        }
+
+        .map-details {
+            padding: 24px 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .map-details strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .map-details span {
+            opacity: .7;
+            font-size: .9rem;
+        }
+
+        .map-link {
+            white-space: nowrap;
+        }
+
+
+        /* =========================
+           FLOATING WHATSAPP
+        ========================== */
+
+        .floating-whatsapp {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            z-index: 999;
+            width: 58px;
+            height: 58px;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            background: #25D366;
+            color: #fff;
+            text-decoration: none;
+            font-size: 25px;
+            box-shadow:
+                0 10px 35px rgba(37,211,102,.35);
+            transition:
+                transform .25s ease,
+                box-shadow .25s ease;
+        }
+
+        .floating-whatsapp:hover {
+            transform: translateY(-5px) scale(1.04);
+            box-shadow:
+                0 15px 45px rgba(37,211,102,.5);
+        }
+
+
+        /* =========================
+           BUTTON EFFECT
+        ========================== */
+
+        .btn {
+            transition:
+                transform .25s ease,
+                box-shadow .25s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .btn-primary:hover {
+            box-shadow:
+                0 12px 35px rgba(140,80,255,.28);
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================== */
+
+        @media (max-width: 768px) {
+
+            .nav {
+                position: fixed;
+                top: 78px;
+                left: 15px;
+                right: 15px;
+                padding: 20px;
+                border-radius: 20px;
+                background: rgba(12,8,17,.96);
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+                box-shadow: 0 25px 60px rgba(0,0,0,.4);
+
+                opacity: 0;
+                visibility: hidden;
+                transform: translateY(-10px);
+                transition:
+                    opacity .25s ease,
+                    transform .25s ease,
+                    visibility .25s ease;
+            }
+
+            .nav.active {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+            }
+
+            .nav a {
+                display: block;
+                padding: 13px 8px;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .genre-card {
+                min-height: 280px;
+            }
+
+            .event-item {
+                min-height: 230px;
+            }
+
+            .map-wrapper iframe {
+                height: 330px;
+            }
+
+            .map-details {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .floating-whatsapp {
+                width: 54px;
+                height: 54px;
+                right: 16px;
+                bottom: 16px;
+            }
+        }
+
+    </style>
+
+
+    <!-- Structured data for Google -->
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "MusicGroup",
+        "name": "Ken NXT SA",
+        "alternateName": "Ken NXT SA DJ",
+        "description": "Cape Town DJ and music curator specialising in Amapiano, Deep House, Afro House and R&B.",
+        "genre": [
+            "Amapiano",
+            "Deep House",
+            "Afro House",
+            "R&B"
+        ],
+        "areaServed": {
+            "@type": "City",
+            "name": "Cape Town"
+        },
+        "sameAs": [
+            "https://www.instagram.com/ken_nxt_sa/",
+            "https://www.tiktok.com/@ken_nxt_sa"
+        ]
+    }
+    </script>
+
+</head>
+
+
+<body>
+
+
+<!-- Background texture -->
+
+<div class="noise"></div>
+
+
+<!-- =========================
+     NAVIGATION
+========================== -->
+
+<header class="site-header">
+
+    <a href="#home" class="logo">
+
+        <span>KEN</span>
+
+        <strong>NXT</strong>
+
+        <small>SA</small>
+
+    </a>
+
+
+    <button
+        class="menu-toggle"
+        aria-label="Open navigation"
+        aria-expanded="false"
+        type="button">
+
+        ☰
+
+    </button>
+
+
+    <nav class="nav" id="nav">
+
+        <a href="#home">
+            Home
+        </a>
+
+        <a href="#about">
+            About
+        </a>
+
+        <a href="#music">
+            Music
+        </a>
+
+        <a href="#services">
+            Services
+        </a>
+
+        <a href="#location">
+            Location
+        </a>
+
+        <a href="#bookings"
+            class="nav-book">
+
+            Book Now
+
+        </a>
+
+    </nav>
+
+</header>
+
+
+
+<main>
+
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <section class="hero section" id="home">
+
+        <div class="hero-content reveal">
+
+            <p class="eyebrow">
+                CAPE TOWN • SOUTH AFRICA
+            </p>
+
+
+            <h1>
+
+                <span>NOW</span>
+
+                <em>Taking</em>
+
+                <span>Bookings</span>
+
+            </h1>
+
+
+            <p class="hero-tagline">
+
+                Bringing the vibe.<br>
+                Creating the moment.
+
+            </p>
+
+
+            <div class="hero-buttons">
+
+                <a href="#bookings"
+                    class="btn btn-primary">
+
+                    Book Ken NXT SA
+
+                </a>
+
+
+                <a href="#music"
+                    class="btn btn-outline">
+
+                    Explore Music
+
+                </a>
+
+            </div>
+
+
+            <div class="hero-meta">
+
+                <span>
+                    WEEKENDS ONLY
+                </span>
+
+                <i></i>
+
+                <span>
+                    CLUBS
+                </span>
+
+                <i></i>
+
+                <span>
+                    LOUNGES
+                </span>
+
+                <i></i>
+
+                <span>
+                    PRIVATE EVENTS
+                </span>
+
+                <i></i>
+
+                <span>
+                    MARKETS
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="hero-image reveal">
+
+            <div class="purple-glow"></div>
+
+            <div class="poster">
+
+                <img
+                    src="ken-nxt-poster.jpg"
+                    alt="Ken NXT SA DJ in Cape Town"
+                    loading="eager">
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         ABOUT
+    ========================== -->
+
+    <section class="section about"
+        id="about">
+
+        <div class="section-heading reveal">
+
+            <p class="eyebrow">
+                THE NXT EXPERIENCE
+            </p>
+
+            <h2>
+
+                YOUR EVENT.<br>
+
+                <span>
+                    YOUR CROWD. OUR VIBE.
+                </span>
+
+            </h2>
+
+        </div>
+
+
+        <div class="about-grid">
+
+
+            <div class="about-text reveal">
+
+                <p>
+
+                    Ken NXT SA is a Cape Town-based DJ
+                    and music curator bringing energetic
+                    and versatile sets to clubs, lounges,
+                    private events and markets.
+
+                </p>
+
+
+                <p>
+
+                    The mission is simple:
+
+                    <strong>
+                        read the room, connect with
+                        the crowd and keep the dancefloor
+                        moving.
+                    </strong>
+
+                </p>
+
+
+                <a href="#bookings"
+                    class="text-link">
+
+                    Let's take it NXT level →
+
+                </a>
+
+            </div>
+
+
+
+            <div class="quote-card reveal">
+
+                <span class="quote">
+                    “
+                </span>
+
+                <p>
+
+                    Bringing the vibe.
+                    Creating the moment.
+
+                </p>
+
+                <small>
+
+                    — KEN NXT SA
+
+                </small>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         MUSIC
+    ========================== -->
+
+    <section class="section music"
+        id="music">
+
+        <div class="section-heading center reveal">
+
+            <p class="eyebrow">
+                MUSIC I PLAY
+            </p>
+
+            <h2>
+
+                FIND YOUR
+                <span>VIBE.</span>
+
+            </h2>
+
+        </div>
+
+
+        <div class="genre-grid">
+
+
+            <div class="genre-card reveal">
+
+                <span>
+                    01
+                </span>
+
+                <h3>
+                    AMAPIANO
+                </h3>
+
+                <p>
+
+                    Groove-heavy sounds
+                    made for a moving crowd.
+
+                </p>
+
+            </div>
+
+
+
+            <div class="genre-card reveal">
+
+                <span>
+                    02
+                </span>
+
+                <h3>
+                    DEEP HOUSE
+                </h3>
+
+                <p>
+
+                    Smooth, deep and
+                    atmospheric selections.
+
+                </p>
+
+            </div>
+
+
+
+            <div class="genre-card reveal">
+
+                <span>
+                    03
+                </span>
+
+                <h3>
+                    AFRO HOUSE
+                </h3>
+
+                <p>
+
+                    Rhythmic energy
+                    with a global feel.
+
+                </p>
+
+            </div>
+
+
+
+            <div class="genre-card reveal">
+
+                <span>
+                    04
+                </span>
+
+                <h3>
+                    R&B
+                </h3>
+
+                <p>
+
+                    Feel-good classics
+                    and modern favourites.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         SERVICES
+    ========================== -->
+
+    <section class="section services"
+        id="services">
+
+
+        <div class="section-heading reveal">
+
+            <p class="eyebrow">
+                WHAT I BRING
+            </p>
+
+            <h2>
+
+                DJ SERVICES THAT KEEP
+                <br>
+
+                <span>
+                    THE DANCEFLOOR ALIVE.
+                </span>
+
+            </h2>
+
+        </div>
+
+
+
+        <div class="service-grid">
+
+
+            <div class="service-card reveal">
+
+                <div class="service-icon">
+                    🎧
+                </div>
+
+                <h3>
+                    DJ SERVICES
+                </h3>
+
+                <p>
+
+                    Professional DJ sets
+                    that keep the dancefloor alive.
+
+                </p>
+
+            </div>
+
+
+
+            <div class="service-card reveal">
+
+                <div class="service-icon">
+                    🤝
+                </div>
+
+                <h3>
+                    COLLABORATIONS
+                </h3>
+
+                <p>
+
+                    Open to working with brands,
+                    artists and creatives.
+
+                    Let's create magic together.
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="event-grid">
+
+
+            <div class="event-item reveal">
+
+                <div class="event-icon">
+                    ♫
+                </div>
+
+                <h3>
+                    CLUBS
+                </h3>
+
+                <p>
+                    We keep the
+                    <strong>dancefloor</strong>
+                    moving.
+                </p>
+
+            </div>
+
+
+
+            <div class="event-item reveal">
+
+                <div class="event-icon">
+                    ◈
+                </div>
+
+                <h3>
+                    MARKETS
+                </h3>
+
+                <p>
+                    Good music.
+                    Good people.
+                    <strong>Great energy.</strong>
+                </p>
+
+            </div>
+
+
+
+            <div class="event-item reveal">
+
+                <div class="event-icon">
+                    🔊
+                </div>
+
+                <h3>
+                    BIG SOUND
+                </h3>
+
+                <p>
+                    Professional equipment.
+                    Unmatched
+                    <strong>vibes.</strong>
+                </p>
+
+            </div>
+
+
+
+            <div class="event-item reveal">
+
+                <div class="event-icon">
+                    ▣
+                </div>
+
+                <h3>
+                    WEEKENDS
+                </h3>
+
+                <p>
+                    That's when the
+                    <strong>magic</strong>
+                    happens.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         BOOKING
+    ========================== -->
+
+    <section class="section booking"
+        id="bookings">
+
+
+        <div class="booking-container">
+
+
+            <div class="booking-information reveal">
+
+                <p class="eyebrow">
+                    NOW TAKING BOOKINGS
+                </p>
+
+
+                <h2>
+
+                    LET'S MAKE YOUR
+
+                    <br>
+
+                    <span>
+                        EVENT NXT LEVEL.
+                    </span>
+
+                </h2>
+
+
+                <p class="booking-description">
+
+                    DM or WhatsApp for bookings.
+
+                </p>
+
+
+
+                <div class="contact-information">
+
+
+                    <a
+                        href="https://wa.me/27722301683"
+                        target="_blank"
+                        rel="noopener noreferrer">
+
+                        <span class="contact-label">
+                            WHATSAPP
+                        </span>
+
+                        <span class="contact-value">
+                            072 230 1683
+                        </span>
+
+                    </a>
+
+
+
+                    <a
+                        href="https://www.instagram.com/ken_nxt_sa/"
+                        target="_blank"
+                        rel="noopener noreferrer">
+
+                        <span class="contact-label">
+                            INSTAGRAM
+                        </span>
+
+                        <span class="contact-value">
+                            @KEN_NXT_SA
+                        </span>
+
+                    </a>
+
+
+
+                    <a
+                        href="https://www.tiktok.com/@ken_nxt_sa"
+                        target="_blank"
+                        rel="noopener noreferrer">
+
+                        <span class="contact-label">
+                            TIKTOK
+                        </span>
+
+                        <span class="contact-value">
+                            @KEN_NXT_SA
+                        </span>
+
+                    </a>
+
+
+
+                    <div>
+
+                        <span class="contact-label">
+                            LOCATION
+                        </span>
+
+                        <span class="contact-value">
+                            CAPE TOWN, SOUTH AFRICA
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- BOOKING FORM -->
+
+            <form
+                class="booking-form reveal"
+                id="bookingForm">
+
+
+                <h3>
+                    BOOKING ENQUIRY
+                </h3>
+
+
+                <label>
+
+                    Your Name
+
+                    <input
+                        type="text"
+                        id="name"
+                        placeholder="Your name"
+                        autocomplete="name"
+                        required>
+
+                </label>
+
+
+
+                <label>
+
+                    Event Type
+
+                    <select
+                        id="eventType"
+                        required>
+
+                        <option value="">
+                            Select event type
+                        </option>
+
+                        <option>
+                            Club
+                        </option>
+
+                        <option>
+                            Lounge
+                        </option>
+
+                        <option>
+                            Private Event
+                        </option>
+
+                        <option>
+                            Market
+                        </option>
+
+                        <option>
+                            Brand / Corporate
+                        </option>
+
+                        <option>
+                            Other
+                        </option>
+
+                    </select>
+
+                </label>
+
+
+
+                <label>
+
+                    Event Date
+
+                    <input
+                        type="date"
+                        id="date"
+                        required>
+
+                </label>
+
+
+
+                <label>
+
+                    Event Location
+
+                    <input
+                        type="text"
+                        id="location"
+                        placeholder="Venue / City"
+                        autocomplete="address-level2"
+                        required>
+
+                </label>
+
+
+
+                <label>
+
+                    Message
+
+                    <textarea
+                        id="message"
+                        rows="4"
+                        placeholder="Tell me about your event..."></textarea>
+
+                </label>
+
+
+
+                <button
+                    type="submit"
+                    class="btn btn-primary full">
+
+                    SEND BOOKING ENQUIRY
+
+                </button>
+
+
+                <p class="form-note">
+
+                    Your enquiry will open in WhatsApp.
+
+                </p>
+
+                <p class="whatsapp-note">
+
+                    💚 Your details will be prepared in a
+                    WhatsApp message so you can send your
+                    booking enquiry directly.
+
+                </p>
+
+            </form>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         CAPE TOWN LOCATION
+    ========================== -->
+
+    <section class="section location-section"
+        id="location">
+
+        <div class="section-heading center reveal">
+
+            <p class="eyebrow">
+                BASED IN CAPE TOWN
+            </p>
+
+            <h2>
+
+                FIND THE
+                <span>NXT VIBE.</span>
+
+            </h2>
+
+            <p>
+                Cape Town, Western Cape, South Africa
+            </p>
+
+        </div>
+
+
+        <div class="map-wrapper reveal">
+
+            <iframe
+                src="https://www.google.com/maps?q=Cape+Town,+South+Africa&output=embed"
+                title="Map showing Cape Town, South Africa"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                allowfullscreen>
+            </iframe>
+
+
+            <div class="map-details">
+
+                <div>
+
+                    <strong>
+                        📍 Cape Town, South Africa
+                    </strong>
+
+                    <span>
+                        Available for clubs, lounges,
+                        markets and private events.
+                    </span>
+
+                </div>
+
+
+                <a
+                    class="btn btn-outline map-link"
+                    href="https://www.google.com/maps/search/?api=1&query=Cape+Town%2C+South+Africa"
+                    target="_blank"
+                    rel="noopener noreferrer">
+
+                    OPEN IN MAPS →
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+
+<!-- =========================
+     FOOTER
+========================== -->
+
+<footer class="footer">
+
+
+    <div class="footer-brand">
+
+        <a href="#home"
+            class="logo">
+
+            <span>KEN</span>
+            <strong>NXT</strong>
+            <small>SA</small>
+
+        </a>
+
+        <p>
+
+            Your event.
+            Your crowd.
+            Our vibe.
+
+        </p>
+
+    </div>
+
+
+
+    <div class="footer-socials">
+
+        <a
+            href="https://www.instagram.com/ken_nxt_sa/"
+            target="_blank"
+            rel="noopener noreferrer">
+
+            Instagram
+
+        </a>
+
+
+        <a
+            href="https://www.tiktok.com/@ken_nxt_sa"
+            target="_blank"
+            rel="noopener noreferrer">
+
+            TikTok
+
+        </a>
+
+
+        <a
+            href="https://wa.me/27722301683"
+            target="_blank"
+            rel="noopener noreferrer">
+
+            WhatsApp
+
+        </a>
+
+    </div>
+
+
+
+    <div class="copyright">
+
+        © <span id="year"></span>
+        Ken NXT SA.
+        All Rights Reserved.
+
+    </div>
+
+</footer>
+
+
+
+<!-- =========================
+     FLOATING WHATSAPP
+========================== -->
+
+<a
+    href="https://wa.me/27722301683?text=Hi%20Ken%20NXT%20SA%2C%20I%27d%20like%20to%20make%20a%20booking%20enquiry."
+    class="floating-whatsapp"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Chat with Ken NXT SA on WhatsApp">
+
+    💬
+
+</a>
+
+
+
+<!-- =========================
+     JAVASCRIPT
+========================== -->
+
+<script>
+
+    /* =========================
        MOBILE NAVIGATION
-       ===================================================== */
+    ========================== */
 
     const menuToggle =
         document.querySelector(".menu-toggle");
@@ -31,7 +1502,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             menuToggle.setAttribute(
                 "aria-expanded",
-                String(isOpen)
+                isOpen
             );
 
             menuToggle.setAttribute(
@@ -41,13 +1512,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     : "Open navigation"
             );
 
-            menuToggle.textContent =
-                isOpen ? "✕" : "☰";
-
         });
 
-
-        /* Close menu after clicking a link */
 
         nav.querySelectorAll("a").forEach(link => {
 
@@ -65,100 +1531,31 @@ document.addEventListener("DOMContentLoaded", () => {
                     "Open navigation"
                 );
 
-                menuToggle.textContent = "☰";
-
             });
 
         });
 
-
-        /* Close menu when clicking outside */
-
-        document.addEventListener("click", event => {
-
-            if (
-                nav.classList.contains("active") &&
-                !nav.contains(event.target) &&
-                !menuToggle.contains(event.target)
-            ) {
-
-                nav.classList.remove("active");
-
-                menuToggle.setAttribute(
-                    "aria-expanded",
-                    "false"
-                );
-
-                menuToggle.setAttribute(
-                    "aria-label",
-                    "Open navigation"
-                );
-
-                menuToggle.textContent = "☰";
-
-            }
-
-        });
-
     }
 
 
 
-    /* =====================================================
-       CURRENT YEAR
-       ===================================================== */
+    /* =========================
+       YEAR
+    ========================== */
 
     const year =
         document.getElementById("year");
 
-
     if (year) {
-
         year.textContent =
             new Date().getFullYear();
-
     }
 
 
 
-    /* =====================================================
-       BOOKING DATE
-       Prevent users from selecting dates in the past.
-       ===================================================== */
-
-    const dateInput =
-        document.getElementById("date");
-
-
-    if (dateInput) {
-
-        const today =
-            new Date();
-
-        const yearValue =
-            today.getFullYear();
-
-        const monthValue =
-            String(today.getMonth() + 1)
-                .padStart(2, "0");
-
-        const dayValue =
-            String(today.getDate())
-                .padStart(2, "0");
-
-        const todayString =
-            `${yearValue}-${monthValue}-${dayValue}`;
-
-        dateInput.min =
-            todayString;
-
-    }
-
-
-
-    /* =====================================================
-       WHATSAPP BOOKING FORM
-       ===================================================== */
+    /* =========================
+       BOOKING FORM → WHATSAPP
+    ========================== */
 
     const bookingForm =
         document.getElementById("bookingForm");
@@ -168,123 +1565,45 @@ document.addEventListener("DOMContentLoaded", () => {
 
         bookingForm.addEventListener(
             "submit",
-            event => {
+            function(event) {
 
                 event.preventDefault();
 
 
-                /* -----------------------------------------
-                   Get form values
-                ----------------------------------------- */
-
                 const name =
-                    document
-                        .getElementById("name")
-                        ?.value
-                        .trim() || "";
+                    document.getElementById("name")
+                        .value.trim();
 
                 const eventType =
-                    document
-                        .getElementById("eventType")
-                        ?.value || "";
+                    document.getElementById("eventType")
+                        .value;
 
                 const date =
-                    document
-                        .getElementById("date")
-                        ?.value || "";
+                    document.getElementById("date")
+                        .value;
 
                 const location =
-                    document
-                        .getElementById("location")
-                        ?.value
-                        .trim() || "";
+                    document.getElementById("location")
+                        .value.trim();
 
                 const message =
-                    document
-                        .getElementById("message")
-                        ?.value
-                        .trim() || "";
+                    document.getElementById("message")
+                        .value.trim();
 
-
-                /* -----------------------------------------
-                   Basic validation
-                ----------------------------------------- */
-
-                if (!name) {
-
-                    showFormMessage(
-                        "Please enter your name.",
-                        "error"
-                    );
-
-                    document
-                        .getElementById("name")
-                        ?.focus();
-
-                    return;
-
-                }
-
-
-                if (!eventType) {
-
-                    showFormMessage(
-                        "Please select your event type.",
-                        "error"
-                    );
-
-                    document
-                        .getElementById("eventType")
-                        ?.focus();
-
-                    return;
-
-                }
-
-
-                if (!date) {
-
-                    showFormMessage(
-                        "Please select your event date.",
-                        "error"
-                    );
-
-                    document
-                        .getElementById("date")
-                        ?.focus();
-
-                    return;
-
-                }
-
-
-                if (!location) {
-
-                    showFormMessage(
-                        "Please enter your event location.",
-                        "error"
-                    );
-
-                    document
-                        .getElementById("location")
-                        ?.focus();
-
-                    return;
-
-                }
-
-
-                /* -----------------------------------------
-                   Format date nicely
-                ----------------------------------------- */
 
                 const formattedDate =
-                    formatDate(date);
+                    date
+                        ? new Date(date + "T00:00:00")
+                            .toLocaleDateString(
+                                "en-ZA",
+                                {
+                                    day: "2-digit",
+                                    month: "long",
+                                    year: "numeric"
+                                }
+                            )
+                        : "Not specified";
 
-
-                /* -----------------------------------------
-                   Create WhatsApp message
-                ----------------------------------------- */
 
                 const whatsappMessage =
 
@@ -292,49 +1611,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
 I'd like to make a booking enquiry.
 
-━━━━━━━━━━━━━━━━━━
+Name: ${name}
 
-👤 Name:
-${name}
+Event Type: ${eventType}
 
-🎉 Event Type:
-${eventType}
+Event Date: ${formattedDate}
 
-📅 Event Date:
-${formattedDate}
+Event Location: ${location}
 
-📍 Event Location:
-${location}
-
-💬 Message:
+Message:
 ${message || "I'd like to discuss my event with you."}
 
-━━━━━━━━━━━━━━━━━━
-
-Looking forward to connecting!
-
-Ken NXT SA`;
-
-
-
-                /* -----------------------------------------
-                   WhatsApp URL
-                ----------------------------------------- */
-
-                const phoneNumber =
-                    "27722301683";
+Looking forward to connecting!`;
 
 
                 const whatsappURL =
-                    `https://wa.me/${phoneNumber}?text=` +
-                    encodeURIComponent(
+                    "https://wa.me/27722301683?text="
+                    + encodeURIComponent(
                         whatsappMessage
                     );
 
-
-                /* -----------------------------------------
-                   Open WhatsApp
-                ----------------------------------------- */
 
                 window.open(
                     whatsappURL,
@@ -342,16 +1638,6 @@ Ken NXT SA`;
                     "noopener,noreferrer"
                 );
 
-
-                /* -----------------------------------------
-                   Optional success feedback
-                ----------------------------------------- */
-
-                showFormMessage(
-                    "Your WhatsApp booking message is ready.",
-                    "success"
-                );
-
             }
         );
 
@@ -359,145 +1645,29 @@ Ken NXT SA`;
 
 
 
-    /* =====================================================
-       FORMAT DATE
-       ===================================================== */
-
-    function formatDate(dateString) {
-
-        if (!dateString) {
-            return "Not specified";
-        }
-
-
-        const date =
-            new Date(
-                `${dateString}T00:00:00`
-            );
-
-
-        if (Number.isNaN(date.getTime())) {
-            return dateString;
-        }
-
-
-        return date.toLocaleDateString(
-            "en-ZA",
-            {
-                weekday: "long",
-                day: "2-digit",
-                month: "long",
-                year: "numeric"
-            }
-        );
-
-    }
-
-
-
-    /* =====================================================
-       FORM FEEDBACK
-       ===================================================== */
-
-    function showFormMessage(
-        message,
-        type = "success"
-    ) {
-
-        const existingMessage =
-            document.querySelector(
-                ".form-feedback"
-            );
-
-
-        if (existingMessage) {
-            existingMessage.remove();
-        }
-
-
-        const feedback =
-            document.createElement("div");
-
-
-        feedback.className =
-            `form-feedback ${type}`;
-
-
-        feedback.textContent =
-            message;
-
-
-        const formNote =
-            bookingForm?.querySelector(
-                ".form-note"
-            );
-
-
-        if (formNote) {
-
-            formNote.insertAdjacentElement(
-                "afterend",
-                feedback
-            );
-
-        } else if (bookingForm) {
-
-            bookingForm.appendChild(
-                feedback
-            );
-
-        }
-
-
-        /* Remove feedback after a few seconds */
-
-        setTimeout(() => {
-
-            feedback.classList.add(
-                "fade-out"
-            );
-
-            setTimeout(() => {
-                feedback.remove();
-            }, 400);
-
-        }, 5000);
-
-    }
-
-
-
-    /* =====================================================
-       SCROLL REVEAL ANIMATIONS
-       ===================================================== */
+    /* =========================
+       SCROLL REVEAL
+    ========================== */
 
     const revealElements =
-        document.querySelectorAll(
-            ".reveal"
-        );
+        document.querySelectorAll(".reveal");
 
 
-    if (
-        revealElements.length &&
-        "IntersectionObserver" in window
-    ) {
+    if ("IntersectionObserver" in window) {
 
-        const revealObserver =
+        const observer =
             new IntersectionObserver(
                 entries => {
 
                     entries.forEach(entry => {
 
-                        if (
-                            entry.isIntersecting
-                        ) {
+                        if (entry.isIntersecting) {
 
                             entry.target
                                 .classList
                                 .add("visible");
 
-
-                            revealObserver.unobserve(
+                            observer.unobserve(
                                 entry.target
                             );
 
@@ -507,568 +1677,49 @@ Ken NXT SA`;
 
                 },
                 {
-                    threshold: 0.12,
-                    rootMargin:
-                        "0px 0px -40px 0px"
+                    threshold: 0.12
                 }
             );
 
 
-        revealElements.forEach(
-            element => {
+        revealElements.forEach(element => {
 
-                revealObserver.observe(
-                    element
-                );
-
-            }
-        );
-
-    } else {
-
-        revealElements.forEach(
-            element => {
-
-                element.classList.add(
-                    "visible"
-                );
-
-            }
-        );
-
-    }
-
-
-
-    /* =====================================================
-       NAVBAR SCROLL EFFECT
-       ===================================================== */
-
-    const header =
-        document.querySelector(
-            ".site-header"
-        );
-
-
-    if (header) {
-
-        const handleHeaderScroll =
-            () => {
-
-                if (
-                    window.scrollY > 40
-                ) {
-
-                    header.classList.add(
-                        "scrolled"
-                    );
-
-                } else {
-
-                    header.classList.remove(
-                        "scrolled"
-                    );
-
-                }
-
-            };
-
-
-        window.addEventListener(
-            "scroll",
-            handleHeaderScroll,
-            {
-                passive: true
-            }
-        );
-
-
-        handleHeaderScroll();
-
-    }
-
-
-
-    /* =====================================================
-       ACTIVE NAVIGATION LINK
-       Highlights the section currently visible.
-       ===================================================== */
-
-    const sections =
-        document.querySelectorAll(
-            "main section[id]"
-        );
-
-    const navLinks =
-        document.querySelectorAll(
-            '.nav a[href^="#"]'
-        );
-
-
-    if (
-        sections.length &&
-        navLinks.length &&
-        "IntersectionObserver" in window
-    ) {
-
-        const sectionObserver =
-            new IntersectionObserver(
-                entries => {
-
-                    entries.forEach(entry => {
-
-                        if (
-                            entry.isIntersecting
-                        ) {
-
-                            const sectionId =
-                                entry.target.id;
-
-
-                            navLinks.forEach(
-                                link => {
-
-                                    link.classList.remove(
-                                        "active"
-                                    );
-
-
-                                    if (
-                                        link.getAttribute(
-                                            "href"
-                                        ) ===
-                                        `#${sectionId}`
-                                    ) {
-
-                                        link.classList.add(
-                                            "active"
-                                        );
-
-                                    }
-
-                                }
-                            );
-
-                        }
-
-                    });
-
-                },
-                {
-                    threshold: 0.25,
-                    rootMargin:
-                        "-20% 0px -60% 0px"
-                }
-            );
-
-
-        sections.forEach(
-            section => {
-
-                sectionObserver.observe(
-                    section
-                );
-
-            }
-        );
-
-    }
-
-
-
-    /* =====================================================
-       SMOOTH ANCHOR SCROLL
-       ===================================================== */
-
-    document
-        .querySelectorAll(
-            'a[href^="#"]'
-        )
-        .forEach(link => {
-
-            link.addEventListener(
-                "click",
-                event => {
-
-                    const targetId =
-                        link.getAttribute(
-                            "href"
-                        );
-
-
-                    if (
-                        !targetId ||
-                        targetId === "#"
-                    ) {
-                        return;
-                    }
-
-
-                    const target =
-                        document.querySelector(
-                            targetId
-                        );
-
-
-                    if (!target) {
-                        return;
-                    }
-
-
-                    event.preventDefault();
-
-
-                    const headerHeight =
-                        header
-                            ? header.offsetHeight
-                            : 0;
-
-
-                    const targetPosition =
-                        target.getBoundingClientRect()
-                            .top +
-                        window.scrollY -
-                        headerHeight -
-                        10;
-
-
-                    window.scrollTo({
-                        top:
-                            targetPosition,
-                        behavior:
-                            "smooth"
-                    });
-
-                }
-            );
+            observer.observe(element);
 
         });
 
+    } else {
 
+        revealElements.forEach(element => {
 
-    /* =====================================================
-       BUTTON RIPPLE EFFECT
-       ===================================================== */
+            element.classList.add("visible");
 
-    const buttons =
-        document.querySelectorAll(
-            ".btn"
-        );
-
-
-    buttons.forEach(button => {
-
-        button.addEventListener(
-            "click",
-            event => {
-
-                const ripple =
-                    document.createElement(
-                        "span"
-                    );
-
-
-                ripple.className =
-                    "button-ripple";
-
-
-                const rect =
-                    button.getBoundingClientRect();
-
-
-                const x =
-                    event.clientX -
-                    rect.left;
-
-
-                const y =
-                    event.clientY -
-                    rect.top;
-
-
-                ripple.style.left =
-                    `${x}px`;
-
-                ripple.style.top =
-                    `${y}px`;
-
-
-                button.appendChild(
-                    ripple
-                );
-
-
-                setTimeout(() => {
-
-                    ripple.remove();
-
-                }, 600);
-
-            }
-        );
-
-    });
-
-
-
-    /* =====================================================
-       IMAGE LOADING EFFECT
-       ===================================================== */
-
-    const images =
-        document.querySelectorAll(
-            "img"
-        );
-
-
-    images.forEach(image => {
-
-        if (image.complete) {
-
-            image.classList.add(
-                "loaded"
-            );
-
-        } else {
-
-            image.addEventListener(
-                "load",
-                () => {
-
-                    image.classList.add(
-                        "loaded"
-                    );
-
-                }
-            );
-
-        }
-
-    });
-
-
-
-    /* =====================================================
-       ESCAPE KEY
-       Closes mobile navigation.
-       ===================================================== */
-
-    document.addEventListener(
-        "keydown",
-        event => {
-
-            if (
-                event.key === "Escape" &&
-                nav?.classList.contains(
-                    "active"
-                )
-            ) {
-
-                nav.classList.remove(
-                    "active"
-                );
-
-
-                menuToggle?.setAttribute(
-                    "aria-expanded",
-                    "false"
-                );
-
-
-                menuToggle?.setAttribute(
-                    "aria-label",
-                    "Open navigation"
-                );
-
-
-                if (menuToggle) {
-                    menuToggle.textContent =
-                        "☰";
-                }
-
-            }
-
-        }
-    );
-
-});
-
-
-
-/* =========================================================
-   EXTRA CSS CLASSES CREATED BY JS
-
-   These styles are injected here so you don't have to
-   change styles.css immediately.
-   ========================================================= */
-
-const dynamicStyles =
-    document.createElement("style");
-
-
-dynamicStyles.textContent = `
-
-    /* Header scroll state */
-
-    .site-header.scrolled {
-        background:
-            rgba(8, 5, 13, .88);
-        box-shadow:
-            0 10px 35px rgba(0,0,0,.18);
-    }
-
-
-    /* Active navigation */
-
-    .nav a.active {
-        color:
-            #c58cff;
-    }
-
-
-    /* Form feedback */
-
-    .form-feedback {
-        margin-top: 12px;
-        padding: 12px 14px;
-        border-radius: 10px;
-        font-size: .85rem;
-        font-weight: 600;
-        animation:
-            feedbackIn .3s ease forwards;
-    }
-
-
-    .form-feedback.success {
-        color: #b9ffd0;
-        background:
-            rgba(37, 211, 102, .10);
-        border:
-            1px solid rgba(37, 211, 102, .25);
-    }
-
-
-    .form-feedback.error {
-        color: #ffd0d0;
-        background:
-            rgba(255, 70, 70, .10);
-        border:
-            1px solid rgba(255, 70, 70, .25);
-    }
-
-
-    .form-feedback.fade-out {
-        opacity: 0;
-        transform:
-            translateY(-5px);
-        transition:
-            opacity .4s ease,
-            transform .4s ease;
-    }
-
-
-    /* Button ripple */
-
-    .btn {
-        position: relative;
-        overflow: hidden;
-    }
-
-
-    .button-ripple {
-        position: absolute;
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-        pointer-events: none;
-
-        background:
-            rgba(255,255,255,.35);
-
-        transform:
-            translate(-50%, -50%)
-            scale(0);
-
-        animation:
-            buttonRipple .6s ease-out;
-    }
-
-
-    /* Image loading */
-
-    img {
-        opacity: 0;
-        transition:
-            opacity .5s ease;
-    }
-
-
-    img.loaded {
-        opacity: 1;
-    }
-
-
-    /* Animations */
-
-    @keyframes buttonRipple {
-
-        to {
-            transform:
-                translate(-50%, -50%)
-                scale(30);
-            opacity: 0;
-        }
+        });
 
     }
 
 
-    @keyframes feedbackIn {
 
-        from {
-            opacity: 0;
-            transform:
-                translateY(8px);
-        }
+    /* =========================
+       PREVENT PAST EVENT DATES
+    ========================== */
 
-        to {
-            opacity: 1;
-            transform:
-                translateY(0);
-        }
-
-    }
+    const dateInput =
+        document.getElementById("date");
 
 
-    /* Respect reduced motion */
+    if (dateInput) {
 
-    @media (prefers-reduced-motion: reduce) {
+        const today =
+            new Date()
+                .toISOString()
+                .split("T")[0];
 
-        html {
-            scroll-behavior: auto;
-        }
-
-        *,
-        *::before,
-        *::after {
-            animation-duration:
-                .01ms !important;
-
-            animation-iteration-count:
-                1 !important;
-
-            transition-duration:
-                .01ms !important;
-
-            scroll-behavior:
-                auto !important;
-        }
+        dateInput.min = today;
 
     }
 
-`;
+</script>
 
-
-document.head.appendChild(
-    dynamicStyles
-);
-```
+</body>
+</html>
