@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-ZA">
+<html lang="en">
 
 <head>
 
@@ -9,49 +9,38 @@
         content="width=device-width, initial-scale=1.0">
 
     <meta name="description"
-        content="Ken NXT SA — Cape Town DJ bringing the vibe and creating the moment. Amapiano, Deep House, Afro House and R&B. Available for clubs, lounges, markets, private events and weekends.">
+        content="Ken NXT SA — Cape Town DJ bringing the vibe and creating the moment. Amapiano, Deep House, Afro House and R&B. Available for clubs, lounges, private events, markets and weekend bookings.">
 
     <meta name="keywords"
-        content="Ken NXT SA, Cape Town DJ, Cape Town DJ booking, Amapiano DJ Cape Town, Deep House DJ, Afro House DJ, R&B DJ, nightclub DJ, events DJ South Africa">
+        content="Ken NXT SA, Cape Town DJ, Cape Town DJ bookings, Amapiano DJ Cape Town, Afro House DJ, Deep House DJ, R&B DJ, club DJ Cape Town, private event DJ">
 
     <meta name="author"
         content="Ken NXT SA">
 
     <meta name="theme-color"
-        content="#07000d">
+        content="#08000d">
 
     <meta name="robots"
         content="index, follow">
 
-    <meta name="geo.region"
-        content="ZA-WC">
-
-    <meta name="geo.placename"
-        content="Cape Town">
-
-    <title>Ken NXT SA | DJ | Cape Town</title>
-
-
-    <!-- =====================================================
-         OPEN GRAPH
-    ====================================================== -->
-
     <meta property="og:title"
-        content="Ken NXT SA | DJ | Cape Town">
+        content="Ken NXT SA | Cape Town DJ">
 
     <meta property="og:description"
-        content="Bringing the vibe. Creating the moment. Cape Town DJ available for clubs, lounges, markets and private events.">
+        content="Bringing the vibe. Creating the moment. Cape Town DJ available for clubs, lounges, private events, markets and weekends.">
 
     <meta property="og:type"
         content="website">
 
     <meta property="og:image"
-        content="ken-nxt-poster.png">
+        content="./ken-nxt-sa.jpg">
+
+    <title>
+        Ken NXT SA | DJ | Cape Town
+    </title>
 
 
-    <!-- =====================================================
-         FONTS
-    ====================================================== -->
+    <!-- Google Fonts -->
 
     <link rel="preconnect"
         href="https://fonts.googleapis.com">
@@ -64,25 +53,13 @@
         rel="stylesheet">
 
 
-    <!-- =====================================================
-         ICONS
-    ====================================================== -->
-
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
-
-    <!-- =====================================================
-         CSS
-    ====================================================== -->
+    <!-- CSS -->
 
     <link rel="stylesheet"
         href="styles.css">
 
 
-    <!-- =====================================================
-         STRUCTURED DATA
-    ====================================================== -->
+    <!-- Local business / DJ SEO -->
 
     <script type="application/ld+json">
 
@@ -91,12 +68,13 @@
         "@type": "Person",
         "name": "Ken NXT SA",
         "jobTitle": "DJ",
-        "description": "Cape Town DJ and music curator specialising in Amapiano, Deep House, Afro House and R&B.",
+        "description": "Cape Town DJ specialising in Amapiano, Deep House, Afro House and R&B.",
         "address": {
             "@type": "PostalAddress",
             "addressLocality": "Cape Town",
             "addressCountry": "ZA"
         },
+        "telephone": "+27722301683",
         "sameAs": [
             "https://www.instagram.com/ken_nxt_sa/",
             "https://www.tiktok.com/@ken_nxt_sa"
@@ -111,21 +89,22 @@
 <body>
 
 
-    <!-- =====================================================
-         BACKGROUND
-    ====================================================== -->
+    <!-- =========================
+         PAGE BACKGROUND
+    ========================== -->
 
     <div class="noise"></div>
 
     <div class="ambient ambient-one"></div>
     <div class="ambient ambient-two"></div>
+    <div class="ambient ambient-three"></div>
 
 
-    <!-- =====================================================
+    <!-- =========================
          NAVIGATION
-    ====================================================== -->
+    ========================== -->
 
-    <header class="site-header" id="siteHeader">
+    <header class="site-header">
 
         <a href="#home"
             class="logo"
@@ -140,7 +119,7 @@
 
         <button
             class="menu-toggle"
-            id="menuToggle"
+            type="button"
             aria-label="Open navigation"
             aria-expanded="false">
 
@@ -152,7 +131,8 @@
 
 
         <nav class="nav"
-            id="nav">
+            id="nav"
+            aria-label="Main navigation">
 
             <a href="#home">
                 Home
@@ -170,6 +150,10 @@
                 Services
             </a>
 
+            <a href="#mixes">
+                Mixes
+            </a>
+
             <a href="#bookings"
                 class="nav-book">
 
@@ -182,105 +166,104 @@
     </header>
 
 
-
     <main>
 
 
-        <!-- =================================================
+        <!-- =========================
              HERO
-        ================================================== -->
+        ========================== -->
 
-        <section class="hero"
+        <section class="hero section"
             id="home">
 
-            <div class="hero-lines"></div>
+            <div class="hero-content">
 
 
-            <div class="hero-copy reveal">
+                <div class="live-pill">
 
-                <div class="hero-kicker">
+                    <span class="live-dot"></span>
 
-                    <span class="pulse-dot"></span>
-
-                    CAPE TOWN • SOUTH AFRICA
+                    NOW TAKING BOOKINGS
 
                 </div>
 
 
-                <h1>
+                <p class="eyebrow">
 
-                    <span class="hero-now">
-                        NOW
-                    </span>
-
-                    <span class="hero-taking">
-                        Taking
-                    </span>
-
-                    <span class="hero-bookings">
-                        Bookings
-                    </span>
-
-                </h1>
-
-
-                <p class="hero-description">
-
-                    Bringing the vibe.<br>
-                    <strong>Creating the moment.</strong>
+                    CAPE TOWN • SOUTH AFRICA
 
                 </p>
 
 
-                <div class="hero-actions">
+                <h1>
+
+                    <span>NOW</span>
+
+                    <em>Taking</em>
+
+                    <span>Bookings</span>
+
+                </h1>
+
+
+                <p class="hero-tagline">
+
+                    Bringing the vibe.<br>
+
+                    <strong>
+                        Creating the moment.
+                    </strong>
+
+                </p>
+
+
+                <div class="hero-buttons">
 
                     <a href="#bookings"
                         class="btn btn-primary">
 
-                        <span>
-                            Book Ken NXT SA
-                        </span>
+                        <span>BOOK KEN NXT SA</span>
 
-                        <i class="fa-solid fa-arrow-right"></i>
+                        <b>↗</b>
 
                     </a>
 
 
                     <a href="#music"
-                        class="btn btn-ghost">
+                        class="btn btn-outline">
 
-                        Explore Music
+                        EXPLORE MUSIC
 
                     </a>
 
                 </div>
 
 
-                <div class="hero-tags">
+                <div class="hero-meta">
 
                     <span>
                         WEEKENDS ONLY
                     </span>
 
-                    <b>•</b>
+                    <i></i>
 
                     <span>
                         CLUBS
                     </span>
 
-                    <b>•</b>
+                    <i></i>
 
                     <span>
                         LOUNGES
                     </span>
 
-                    <b>•</b>
+                    <i></i>
 
                     <span>
                         PRIVATE EVENTS
                     </span>
 
-                    <b>•</b>
+                    <i></i>
 
                     <span>
                         MARKETS
@@ -291,46 +274,76 @@
             </div>
 
 
+            <!-- HERO PHOTO -->
 
-            <!-- HERO POSTER -->
+            <div class="hero-visual">
 
-            <div class="hero-visual reveal">
+                <div class="hero-glow"></div>
 
-                <div class="visual-glow"></div>
+                <div class="hero-ring ring-one"></div>
+                <div class="hero-ring ring-two"></div>
 
-                <div class="poster-frame">
 
-                    <div class="poster-topline">
+                <div class="hero-image-frame">
 
-                        <span>
-                            KEN NXT SA
-                        </span>
-
-                        <span>
-                            DJ / MUSIC CURATOR
-                        </span>
-
-                    </div>
-
+                    <!--
+                        YOUR PHOTO:
+                        ken-nxt-sa.jpg
+                    -->
 
                     <img
-                        src="ken-nxt-poster.png"
-                        alt="Ken NXT SA DJ promotional poster">
+                        id="kenPhoto"
+                        src="./ken-nxt-sa.jpg"
+                        alt="Ken NXT SA DJ performing"
+                        class="ken-photo"
+                        loading="eager"
+                        fetchpriority="high">
 
 
-                    <div class="poster-scan"></div>
+                    <div class="photo-gradient"></div>
+
+                    <div class="photo-scan"></div>
+
+
+                    <div class="image-corner corner-one"></div>
+                    <div class="image-corner corner-two"></div>
+
+
+                    <div class="photo-label">
+
+                        <span>
+                            DJ
+                        </span>
+
+                        <strong>
+                            KEN NXT SA
+                        </strong>
+
+                    </div>
 
                 </div>
 
 
-                <div class="floating-card floating-card-one">
+                <div class="cape-town-badge">
 
-                    <span class="floating-icon">
-                        <i class="fa-solid fa-headphones"></i>
+                    <span>
+                        BASED IN
+                    </span>
+
+                    <strong>
+                        CAPE TOWN
+                    </strong>
+
+                </div>
+
+
+                <div class="floating-card music-card">
+
+                    <span class="mini-icon">
+                        ♫
                     </span>
 
                     <div>
-
                         <small>
                             MUSIC
                         </small>
@@ -338,26 +351,30 @@
                         <strong>
                             4 VIBES
                         </strong>
-
                     </div>
 
                 </div>
 
 
-                <div class="floating-card floating-card-two">
+                <div class="floating-card energy-card">
 
-                    <span class="floating-icon">
-                        <i class="fa-solid fa-location-dot"></i>
+                    <span class="equalizer">
+
+                        <i></i>
+                        <i></i>
+                        <i></i>
+                        <i></i>
+
                     </span>
 
                     <div>
 
                         <small>
-                            BASED IN
+                            ENERGY
                         </small>
 
                         <strong>
-                            CAPE TOWN
+                            NXT LEVEL
                         </strong>
 
                     </div>
@@ -366,32 +383,84 @@
 
             </div>
 
-
-            <div class="scroll-indicator">
-
-                <span></span>
-
-                SCROLL TO EXPLORE
-
-            </div>
-
         </section>
 
 
+        <!-- =========================
+             MARQUEE
+        ========================== -->
 
-        <!-- =================================================
+        <div class="marquee">
+
+            <div class="marquee-track">
+
+                <span>
+                    AMAPIANO
+                </span>
+
+                <b>✦</b>
+
+                <span>
+                    AFRO HOUSE
+                </span>
+
+                <b>✦</b>
+
+                <span>
+                    DEEP HOUSE
+                </span>
+
+                <b>✦</b>
+
+                <span>
+                    R&B
+                </span>
+
+                <b>✦</b>
+
+                <span>
+                    CAPE TOWN
+                </span>
+
+                <b>✦</b>
+
+                <span>
+                    WEEKEND VIBES
+                </span>
+
+                <b>✦</b>
+
+                <span>
+                    AMAPIANO
+                </span>
+
+                <b>✦</b>
+
+                <span>
+                    AFRO HOUSE
+                </span>
+
+                <b>✦</b>
+
+                <span>
+                    DEEP HOUSE
+                </span>
+
+                <b>✦</b>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
              ABOUT
-        ================================================== -->
+        ========================== -->
 
         <section class="section about"
             id="about">
 
-            <div class="section-number">
-                01
-            </div>
-
-
-            <div class="section-heading reveal">
+            <div class="section-heading">
 
                 <p class="eyebrow">
                     THE NXT EXPERIENCE
@@ -400,15 +469,12 @@
                 <h2>
 
                     YOUR EVENT.
+
                     <br>
 
                     <span>
-                        YOUR CROWD.
+                        YOUR CROWD. OUR VIBE.
                     </span>
-
-                    <br>
-
-                    OUR VIBE.
 
                 </h2>
 
@@ -418,16 +484,7 @@
             <div class="about-grid">
 
 
-                <div class="about-copy reveal">
-
-                    <div class="about-label">
-
-                        <span></span>
-
-                        WHO IS KEN NXT SA?
-
-                    </div>
-
+                <div class="about-text">
 
                     <p class="large-copy">
 
@@ -466,21 +523,24 @@
                 </div>
 
 
+                <div class="quote-card">
 
-                <div class="quote-box reveal">
+                    <div class="quote-lines"></div>
 
-                    <div class="quote-mark">
+                    <span class="quote">
                         “
-                    </div>
+                    </span>
 
                     <p>
+
                         Bringing the vibe.
                         Creating the moment.
+
                     </p>
 
-                    <span>
+                    <small>
                         — KEN NXT SA
-                    </span>
+                    </small>
 
                 </div>
 
@@ -489,49 +549,30 @@
         </section>
 
 
-
-        <!-- =================================================
+        <!-- =========================
              MUSIC
-        ================================================== -->
+        ========================== -->
 
         <section class="section music"
             id="music">
 
-            <div class="section-number">
-                02
-            </div>
+            <div class="section-heading center">
 
+                <p class="eyebrow">
+                    MUSIC I PLAY
+                </p>
 
-            <div class="section-heading split-heading reveal">
+                <h2>
 
-                <div>
+                    FIND YOUR
+                    <span>VIBE.</span>
 
-                    <p class="eyebrow">
-                        MUSIC I PLAY
-                    </p>
+                </h2>
 
-                    <h2>
+                <p class="section-intro">
 
-                        FIND YOUR
-                        <span>
-                            VIBE.
-                        </span>
-
-                    </h2>
-
-                </div>
-
-
-                <p class="heading-note">
-
-                    From late-night grooves to
-                    high-energy dancefloors.
-
-                    <br>
-
-                    <strong>
-                        The room decides the vibe.
-                    </strong>
+                    Four sounds. One mission:
+                    keep the room moving.
 
                 </p>
 
@@ -541,19 +582,23 @@
             <div class="genre-grid">
 
 
-                <!-- AMAPIANO -->
+                <article class="genre-card">
 
-                <article
-                    class="genre-card reveal">
+                    <img
+                        src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=1200&q=85"
+                        alt="Amapiano inspired nightlife crowd"
+                        loading="lazy">
 
-                    <div class="card-image amapiano-image"></div>
+                    <div class="genre-overlay"></div>
 
-                    <div class="card-overlay"></div>
+                    <div class="genre-number">
+                        01
+                    </div>
 
                     <div class="genre-content">
 
-                        <span class="card-number">
-                            01
+                        <span>
+                            GROOVE
                         </span>
 
                         <h3>
@@ -565,29 +610,28 @@
                             made for a moving crowd.
                         </p>
 
-                        <span class="card-arrow">
-                            →
-                        </span>
-
                     </div>
 
                 </article>
 
 
+                <article class="genre-card">
 
-                <!-- DEEP HOUSE -->
+                    <img
+                        src="https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=1200&q=85"
+                        alt="Deep house nightclub atmosphere"
+                        loading="lazy">
 
-                <article
-                    class="genre-card reveal">
+                    <div class="genre-overlay"></div>
 
-                    <div class="card-image deep-house-image"></div>
-
-                    <div class="card-overlay"></div>
+                    <div class="genre-number">
+                        02
+                    </div>
 
                     <div class="genre-content">
 
-                        <span class="card-number">
-                            02
+                        <span>
+                            AFTER DARK
                         </span>
 
                         <h3>
@@ -599,29 +643,28 @@
                             atmospheric selections.
                         </p>
 
-                        <span class="card-arrow">
-                            →
-                        </span>
-
                     </div>
 
                 </article>
 
 
+                <article class="genre-card">
 
-                <!-- AFRO HOUSE -->
+                    <img
+                        src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=1200&q=85"
+                        alt="Afro house nightlife crowd"
+                        loading="lazy">
 
-                <article
-                    class="genre-card reveal">
+                    <div class="genre-overlay"></div>
 
-                    <div class="card-image afro-house-image"></div>
-
-                    <div class="card-overlay"></div>
+                    <div class="genre-number">
+                        03
+                    </div>
 
                     <div class="genre-content">
 
-                        <span class="card-number">
-                            03
+                        <span>
+                            RHYTHM
                         </span>
 
                         <h3>
@@ -633,29 +676,28 @@
                             with a global feel.
                         </p>
 
-                        <span class="card-arrow">
-                            →
-                        </span>
-
                     </div>
 
                 </article>
 
 
+                <article class="genre-card">
 
-                <!-- R&B -->
+                    <img
+                        src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1200&q=85"
+                        alt="R&B inspired live music crowd"
+                        loading="lazy">
 
-                <article
-                    class="genre-card reveal">
+                    <div class="genre-overlay"></div>
 
-                    <div class="card-image rnb-image"></div>
-
-                    <div class="card-overlay"></div>
+                    <div class="genre-number">
+                        04
+                    </div>
 
                     <div class="genre-content">
 
-                        <span class="card-number">
-                            04
+                        <span>
+                            SOUL
                         </span>
 
                         <h3>
@@ -667,10 +709,6 @@
                             and modern favourites.
                         </p>
 
-                        <span class="card-arrow">
-                            →
-                        </span>
-
                     </div>
 
                 </article>
@@ -680,20 +718,97 @@
         </section>
 
 
+        <!-- =========================
+             DJ MIXES
+        ========================== -->
 
-        <!-- =================================================
+        <section class="section mixes"
+            id="mixes">
+
+            <div class="section-heading">
+
+                <p class="eyebrow">
+                    LISTEN • FEEL • MOVE
+                </p>
+
+                <h2>
+
+                    DJ MIXES
+
+                    <span>
+                        COMING SOON.
+                    </span>
+
+                </h2>
+
+            </div>
+
+
+            <div class="mixes-panel">
+
+                <div class="vinyl">
+
+                    <div class="vinyl-center">
+                        NXT
+                    </div>
+
+                </div>
+
+
+                <div class="mix-info">
+
+                    <span class="mix-label">
+                        MIX LIBRARY
+                    </span>
+
+                    <h3>
+                        THE NXT SOUND
+                    </h3>
+
+                    <p>
+
+                        DJ mixes and curated sets will be
+                        added here as they become available.
+
+                    </p>
+
+
+                    <div class="platforms">
+
+                        <span>
+                            SOUNDCLOUD
+                        </span>
+
+                        <span>
+                            MIXCLOUD
+                        </span>
+
+                        <span>
+                            YOUTUBE
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="coming-soon">
+                    SOON
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
              SERVICES
-        ================================================== -->
+        ========================== -->
 
         <section class="section services"
             id="services">
 
-            <div class="section-number">
-                03
-            </div>
-
-
-            <div class="section-heading reveal">
+            <div class="section-heading">
 
                 <p class="eyebrow">
                     WHAT I BRING
@@ -701,11 +816,12 @@
 
                 <h2>
 
-                    DJ SERVICES
+                    DJ SERVICES THAT KEEP
+
                     <br>
 
                     <span>
-                        THAT HIT DIFFERENT.
+                        THE DANCEFLOOR ALIVE.
                     </span>
 
                 </h2>
@@ -716,15 +832,15 @@
             <div class="service-grid">
 
 
-                <article class="service-card reveal">
+                <article class="service-card">
 
                     <div class="service-icon">
-                        <i class="fa-solid fa-headphones"></i>
+                        🎧
                     </div>
 
                     <div>
 
-                        <span class="service-number">
+                        <span class="card-number">
                             01
                         </span>
 
@@ -733,8 +849,10 @@
                         </h3>
 
                         <p>
+
                             Professional DJ sets
                             that keep the dancefloor alive.
+
                         </p>
 
                     </div>
@@ -742,16 +860,15 @@
                 </article>
 
 
-
-                <article class="service-card reveal">
+                <article class="service-card">
 
                     <div class="service-icon">
-                        <i class="fa-solid fa-handshake"></i>
+                        🤝
                     </div>
 
                     <div>
 
-                        <span class="service-number">
+                        <span class="card-number">
                             02
                         </span>
 
@@ -760,9 +877,12 @@
                         </h3>
 
                         <p>
+
                             Open to working with brands,
                             artists and creatives.
+
                             Let's create magic together.
+
                         </p>
 
                     </div>
@@ -770,136 +890,121 @@
                 </article>
 
             </div>
-
 
 
             <!-- EVENT TYPES -->
 
-            <div class="event-intro reveal">
-
-                <span>
-                    BUILT FOR THE ROOM
-                </span>
-
-                <div></div>
-
-                <small>
-                    WHERE THE NXT VIBE LIVES
-                </small>
-
-            </div>
-
-
             <div class="event-grid">
 
 
-                <article class="event-card reveal">
+                <article class="event-item">
 
-                    <div class="event-image club-image"></div>
+                    <div class="event-image">
 
-                    <div class="event-overlay"></div>
+                        <img
+                            src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=900&q=85"
+                            alt="Nightclub dancefloor"
+                            loading="lazy">
 
-                    <div class="event-content">
-
-                        <div class="event-icon">
-                            <i class="fa-solid fa-compact-disc"></i>
-                        </div>
-
-                        <h3>
-                            CLUBS
-                        </h3>
-
-                        <p>
-                            We keep the
-                            <strong>dancefloor</strong>
-                            moving.
-                        </p>
+                        <span>
+                            ♫
+                        </span>
 
                     </div>
+
+                    <h3>
+                        CLUBS
+                    </h3>
+
+                    <p>
+                        We keep the
+                        <strong>dancefloor</strong>
+                        moving.
+                    </p>
 
                 </article>
 
 
+                <article class="event-item">
 
-                <article class="event-card reveal">
+                    <div class="event-image">
 
-                    <div class="event-image market-image"></div>
+                        <img
+                            src="https://images.unsplash.com/photo-1481437642641-2f0ae875f836?auto=format&fit=crop&w=900&q=85"
+                            alt="Busy market event"
+                            loading="lazy">
 
-                    <div class="event-overlay"></div>
-
-                    <div class="event-content">
-
-                        <div class="event-icon">
-                            <i class="fa-solid fa-store"></i>
-                        </div>
-
-                        <h3>
-                            MARKETS
-                        </h3>
-
-                        <p>
-                            Good music.
-                            Good people.
-                            <strong>Great energy.</strong>
-                        </p>
+                        <span>
+                            ◈
+                        </span>
 
                     </div>
+
+                    <h3>
+                        MARKETS
+                    </h3>
+
+                    <p>
+                        Good music.
+                        Good people.
+                        <strong>Great energy.</strong>
+                    </p>
 
                 </article>
 
 
+                <article class="event-item">
 
-                <article class="event-card reveal">
+                    <div class="event-image">
 
-                    <div class="event-image sound-image"></div>
+                        <img
+                            src="https://images.unsplash.com/photo-1571266028243-d220c9c3b9a5?auto=format&fit=crop&w=900&q=85"
+                            alt="DJ sound system and equipment"
+                            loading="lazy">
 
-                    <div class="event-overlay"></div>
-
-                    <div class="event-content">
-
-                        <div class="event-icon">
-                            <i class="fa-solid fa-volume-high"></i>
-                        </div>
-
-                        <h3>
-                            BIG SOUND
-                        </h3>
-
-                        <p>
-                            Professional equipment.
-                            Unmatched
-                            <strong>vibes.</strong>
-                        </p>
+                        <span>
+                            🔊
+                        </span>
 
                     </div>
+
+                    <h3>
+                        BIG SOUND
+                    </h3>
+
+                    <p>
+                        Professional equipment.
+                        Unmatched
+                        <strong>vibes.</strong>
+                    </p>
 
                 </article>
 
 
+                <article class="event-item">
 
-                <article class="event-card reveal">
+                    <div class="event-image">
 
-                    <div class="event-image weekend-image"></div>
+                        <img
+                            src="https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?auto=format&fit=crop&w=900&q=85"
+                            alt="Weekend nightlife party"
+                            loading="lazy">
 
-                    <div class="event-overlay"></div>
-
-                    <div class="event-content">
-
-                        <div class="event-icon">
-                            <i class="fa-solid fa-calendar-days"></i>
-                        </div>
-
-                        <h3>
-                            WEEKENDS
-                        </h3>
-
-                        <p>
-                            That's when the
-                            <strong>magic</strong>
-                            happens.
-                        </p>
+                        <span>
+                            ▣
+                        </span>
 
                     </div>
+
+                    <h3>
+                        WEEKENDS
+                    </h3>
+
+                    <p>
+                        That's when the
+                        <strong>magic</strong>
+                        happens.
+                    </p>
 
                 </article>
 
@@ -908,67 +1013,141 @@
         </section>
 
 
+        <!-- =========================
+             SOCIAL / VIDEO PLACEHOLDER
+        ========================== -->
 
-        <!-- =================================================
+        <section class="section media-preview">
+
+            <div class="section-heading center">
+
+                <p class="eyebrow">
+                    THE SOUND IS GROWING
+                </p>
+
+                <h2>
+
+                    MORE NXT
+                    <span>
+                        SOON.
+                    </span>
+
+                </h2>
+
+            </div>
+
+
+            <div class="media-grid">
+
+                <div class="media-card">
+
+                    <div class="media-icon">
+                        ♪
+                    </div>
+
+                    <h3>
+                        SOUNDCLOUD / MIXCLOUD
+                    </h3>
+
+                    <p>
+                        DJ mixes will be added here.
+                    </p>
+
+                    <span>
+                        COMING SOON
+                    </span>
+
+                </div>
+
+
+                <div class="media-card">
+
+                    <div class="media-icon">
+                        ▶
+                    </div>
+
+                    <h3>
+                        YOUTUBE
+                    </h3>
+
+                    <p>
+                        Video mixes and DJ content
+                        will be added here.
+                    </p>
+
+                    <span>
+                        COMING SOON
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
              BOOKING
-        ================================================== -->
+        ========================== -->
 
-        <section class="booking"
+        <section class="section booking"
             id="bookings">
 
-            <div class="booking-background"></div>
+            <div class="booking-container">
 
 
-            <div class="booking-inner">
+                <div class="booking-information">
 
+                    <div class="booking-kicker">
 
-                <div class="booking-copy reveal">
+                        <span class="live-dot"></span>
+
+                        NOW TAKING BOOKINGS
+
+                    </div>
+
 
                     <p class="eyebrow">
-                        NOW TAKING BOOKINGS
+                        LET'S MAKE SOME NOISE
                     </p>
 
 
                     <h2>
 
-                        LET'S MAKE
+                        LET'S MAKE YOUR
+
                         <br>
 
-                        YOUR EVENT
-
                         <span>
-                            NXT LEVEL.
+                            EVENT NXT LEVEL.
                         </span>
 
                     </h2>
 
 
-                    <p class="booking-text">
+                    <p class="booking-description">
 
                         DM or WhatsApp for bookings.
 
-                        <br>
-
-                        Tell me about the event
-                        and let's create the right
-                        atmosphere for your crowd.
+                        Tell me about your event and
+                        let's create the right vibe.
 
                     </p>
 
 
-                    <div class="contact-list">
+                    <div class="contact-information">
 
 
-                        <a href="https://wa.me/27722301683"
+                        <a
+                            href="https://wa.me/27722301683"
                             target="_blank"
-                            rel="noopener noreferrer"
-                            class="contact-item">
+                            rel="noopener noreferrer">
 
-                            <div class="contact-icon whatsapp">
-                                <i class="fa-brands fa-whatsapp"></i>
-                            </div>
+                            <span class="contact-icon">
+                                WA
+                            </span>
 
-                            <div>
+                            <span>
 
                                 <small>
                                     WHATSAPP
@@ -978,22 +1157,21 @@
                                     072 230 1683
                                 </strong>
 
-                            </div>
+                            </span>
 
                         </a>
 
 
-
-                        <a href="https://www.instagram.com/ken_nxt_sa/"
+                        <a
+                            href="https://www.instagram.com/ken_nxt_sa/"
                             target="_blank"
-                            rel="noopener noreferrer"
-                            class="contact-item">
+                            rel="noopener noreferrer">
 
-                            <div class="contact-icon instagram">
-                                <i class="fa-brands fa-instagram"></i>
-                            </div>
+                            <span class="contact-icon">
+                                IG
+                            </span>
 
-                            <div>
+                            <span>
 
                                 <small>
                                     INSTAGRAM
@@ -1003,22 +1181,21 @@
                                     @KEN_NXT_SA
                                 </strong>
 
-                            </div>
+                            </span>
 
                         </a>
 
 
-
-                        <a href="https://www.tiktok.com/@ken_nxt_sa"
+                        <a
+                            href="https://www.tiktok.com/@ken_nxt_sa"
                             target="_blank"
-                            rel="noopener noreferrer"
-                            class="contact-item">
+                            rel="noopener noreferrer">
 
-                            <div class="contact-icon tiktok">
-                                <i class="fa-brands fa-tiktok"></i>
-                            </div>
+                            <span class="contact-icon">
+                                TT
+                            </span>
 
-                            <div>
+                            <span>
 
                                 <small>
                                     TIKTOK
@@ -1028,20 +1205,40 @@
                                     @KEN_NXT_SA
                                 </strong>
 
-                            </div>
+                            </span>
 
                         </a>
 
+
+                        <div>
+
+                            <span class="contact-icon">
+                                📍
+                            </span>
+
+                            <span>
+
+                                <small>
+                                    LOCATION
+                                </small>
+
+                                <strong>
+                                    CAPE TOWN, SOUTH AFRICA
+                                </strong>
+
+                            </span>
+
+                        </div>
 
                     </div>
 
                 </div>
 
 
-
                 <!-- BOOKING FORM -->
 
-                <form class="booking-form reveal"
+                <form
+                    class="booking-form"
                     id="bookingForm">
 
                     <div class="form-header">
@@ -1053,11 +1250,11 @@
                         <div>
 
                             <small>
-                                BOOKING
+                                START HERE
                             </small>
 
                             <h3>
-                                LET'S TALK.
+                                BOOKING ENQUIRY
                             </h3>
 
                         </div>
@@ -1067,12 +1264,13 @@
 
                     <label>
 
-                        YOUR NAME
+                        <span>
+                            Your Name
+                        </span>
 
                         <input
                             type="text"
                             id="name"
-                            name="name"
                             placeholder="Your name"
                             autocomplete="name"
                             required>
@@ -1080,41 +1278,41 @@
                     </label>
 
 
-
                     <label>
 
-                        EVENT TYPE
+                        <span>
+                            Event Type
+                        </span>
 
                         <select
                             id="eventType"
-                            name="eventType"
                             required>
 
                             <option value="">
                                 Select event type
                             </option>
 
-                            <option value="Club">
+                            <option>
                                 Club
                             </option>
 
-                            <option value="Lounge">
+                            <option>
                                 Lounge
                             </option>
 
-                            <option value="Private Event">
+                            <option>
                                 Private Event
                             </option>
 
-                            <option value="Market">
+                            <option>
                                 Market
                             </option>
 
-                            <option value="Brand / Corporate">
+                            <option>
                                 Brand / Corporate
                             </option>
 
-                            <option value="Other">
+                            <option>
                                 Other
                             </option>
 
@@ -1123,17 +1321,17 @@
                     </label>
 
 
-
                     <div class="form-row">
 
                         <label>
 
-                            EVENT DATE
+                            <span>
+                                Event Date
+                            </span>
 
                             <input
                                 type="date"
                                 id="date"
-                                name="date"
                                 required>
 
                         </label>
@@ -1141,28 +1339,43 @@
 
                         <label>
 
-                            LOCATION
+                            <span>
+                                Guest / Crowd Size
+                            </span>
 
                             <input
                                 type="text"
-                                id="location"
-                                name="location"
-                                placeholder="Venue / City"
-                                required>
+                                id="guests"
+                                placeholder="Optional">
 
                         </label>
 
                     </div>
 
 
+                    <label>
+
+                        <span>
+                            Event Location
+                        </span>
+
+                        <input
+                            type="text"
+                            id="location"
+                            placeholder="Venue / City"
+                            required>
+
+                    </label>
+
 
                     <label>
 
-                        MESSAGE
+                        <span>
+                            Message
+                        </span>
 
                         <textarea
                             id="message"
-                            name="message"
                             rows="4"
                             placeholder="Tell me about your event..."></textarea>
 
@@ -1174,10 +1387,12 @@
                         class="btn btn-primary full">
 
                         <span>
-                            SEND BOOKING ENQUIRY
+                            SEND BOOKING TO WHATSAPP
                         </span>
 
-                        <i class="fa-brands fa-whatsapp"></i>
+                        <b>
+                            →
+                        </b>
 
                     </button>
 
@@ -1196,76 +1411,74 @@
         </section>
 
 
+        <!-- =========================
+             CAPE TOWN MAP
+        ========================== -->
 
-        <!-- =================================================
-             LOCATION
-        ================================================== -->
+        <section class="map-section">
 
-        <section class="section location"
-            id="location">
+            <div class="map-heading">
 
-            <div class="section-number">
-                04
-            </div>
+                <div>
 
+                    <p class="eyebrow">
+                        WHERE THE VIBE LIVES
+                    </p>
 
-            <div class="section-heading reveal">
+                    <h2>
 
-                <p class="eyebrow">
-                    FIND THE VIBE
-                </p>
-
-                <h2>
-
-                    BASED IN
-                    <span>
-                        CAPE TOWN.
-                    </span>
-
-                </h2>
-
-            </div>
-
-
-            <div class="map-card reveal">
-
-                <div class="map-top">
-
-                    <div>
+                        CAPE TOWN
 
                         <span>
-                            LOCATION
+                            SOUTH AFRICA.
                         </span>
 
-                        <strong>
-                            CAPE TOWN, SOUTH AFRICA
-                        </strong>
-
-                    </div>
-
-
-                    <a
-                        href="https://www.google.com/maps/search/?api=1&query=Cape+Town+South+Africa"
-                        target="_blank"
-                        rel="noopener noreferrer">
-
-                        OPEN IN MAPS
-
-                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
-
-                    </a>
+                    </h2>
 
                 </div>
 
 
-                <div class="map-container">
+                <a
+                    href="https://www.google.com/maps/search/?api=1&query=Cape+Town%2C+South+Africa"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="map-link">
 
-                    <iframe
-                        title="Map showing Cape Town, South Africa"
-                        src="https://www.google.com/maps?q=Cape+Town,+South+Africa&output=embed"
-                        loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>
+                    OPEN IN GOOGLE MAPS
+                    ↗
+
+                </a>
+
+            </div>
+
+
+            <div class="map-wrapper">
+
+                <iframe
+                    title="Map of Cape Town, South Africa"
+                    src="https://www.openstreetmap.org/export/embed.html?bbox=18.35%2C-34.15%2C18.65%2C-33.75&layer=mapnik&marker=-33.9249%2C18.4241"
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+
+
+                <div class="map-overlay-card">
+
+                    <span>
+                        📍
+                    </span>
+
+                    <div>
+
+                        <small>
+                            BASED IN
+                        </small>
+
+                        <strong>
+                            CAPE TOWN
+                        </strong>
+
+                    </div>
 
                 </div>
 
@@ -1276,35 +1489,11 @@
     </main>
 
 
-
-    <!-- =====================================================
-         FLOATING WHATSAPP
-    ====================================================== -->
-
-    <a
-        href="https://wa.me/27722301683"
-        class="floating-whatsapp"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Book Ken NXT SA on WhatsApp">
-
-        <i class="fa-brands fa-whatsapp"></i>
-
-        <span>
-            BOOK
-        </span>
-
-    </a>
-
-
-
-    <!-- =====================================================
+    <!-- =========================
          FOOTER
-    ====================================================== -->
+    ========================== -->
 
     <footer class="footer">
-
-        <div class="footer-line"></div>
 
 
         <div class="footer-main">
@@ -1341,7 +1530,6 @@
             </div>
 
 
-
             <div class="footer-socials">
 
                 <a
@@ -1349,9 +1537,8 @@
                     target="_blank"
                     rel="noopener noreferrer">
 
-                    <i class="fa-brands fa-instagram"></i>
-
-                    Instagram
+                    INSTAGRAM
+                    ↗
 
                 </a>
 
@@ -1361,9 +1548,8 @@
                     target="_blank"
                     rel="noopener noreferrer">
 
-                    <i class="fa-brands fa-tiktok"></i>
-
-                    TikTok
+                    TIKTOK
+                    ↗
 
                 </a>
 
@@ -1373,14 +1559,12 @@
                     target="_blank"
                     rel="noopener noreferrer">
 
-                    <i class="fa-brands fa-whatsapp"></i>
-
-                    WhatsApp
+                    WHATSAPP
+                    ↗
 
                 </a>
 
             </div>
-
 
         </div>
 
@@ -1391,7 +1575,6 @@
 
                 © <span id="year"></span>
                 Ken NXT SA.
-                All Rights Reserved.
 
             </span>
 
@@ -1400,15 +1583,38 @@
                 CAPE TOWN • SOUTH AFRICA
             </span>
 
+
+            <span>
+                ALL RIGHTS RESERVED.
+            </span>
+
+        </div>
+
+
+        <div class="footer-slogan">
+
+            LET'S TAKE IT
+
+            <em>
+                NXT LEVEL.
+            </em>
+
         </div>
 
     </footer>
 
 
+    <!-- Back to top -->
 
-    <!-- =====================================================
-         JAVASCRIPT
-    ====================================================== -->
+    <button
+        class="back-to-top"
+        id="backToTop"
+        aria-label="Back to top">
+
+        ↑
+
+    </button>
+
 
     <script src="script.js"></script>
 
