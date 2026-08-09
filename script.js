@@ -1,643 +1,284 @@
-```javascript
 /* =========================================================
-   KEN NXT SA — MAIN JAVASCRIPT
+   KEN NXT SA
+   WEBSITE JAVASCRIPT
    ========================================================= */
 
+"use strict";
+
 
 /* =========================================================
-   DOM READY
+   ELEMENTS
    ========================================================= */
 
-document.addEventListener("DOMContentLoaded", () => {
+const menuToggle =
+    document.getElementById("menuToggle");
+
+const nav =
+    document.getElementById("nav");
+
+const siteHeader =
+    document.getElementById("siteHeader");
+
+const bookingForm =
+    document.getElementById("bookingForm");
+
+const dateInput =
+    document.getElementById("date");
+
+const yearElement =
+    document.getElementById("year");
 
 
-    /* =====================================================
-       MOBILE NAVIGATION
-       ===================================================== */
+/* =========================================================
+   MOBILE NAVIGATION
+   ========================================================= */
 
-    const menuToggle =
-        document.querySelector(".menu-toggle");
+if (menuToggle && nav) {
 
-    const nav =
-        document.querySelector(".nav");
-
-
-    if (menuToggle && nav) {
-
-        menuToggle.addEventListener("click", () => {
+    menuToggle.addEventListener(
+        "click",
+        () => {
 
             const isOpen =
                 nav.classList.toggle("active");
+
+            menuToggle.classList.toggle(
+                "active",
+                isOpen
+            );
 
             menuToggle.setAttribute(
                 "aria-expanded",
                 String(isOpen)
             );
 
-            menuToggle.setAttribute(
-                "aria-label",
-                isOpen
-                    ? "Close navigation"
-                    : "Open navigation"
+        }
+    );
+
+
+    /*
+        Close menu after clicking a link
+    */
+
+    nav.querySelectorAll("a").forEach(
+        (link) => {
+
+            link.addEventListener(
+                "click",
+                () => {
+
+                    nav.classList.remove(
+                        "active"
+                    );
+
+                    menuToggle.classList.remove(
+                        "active"
+                    );
+
+                    menuToggle.setAttribute(
+                        "aria-expanded",
+                        "false"
+                    );
+
+                }
             );
 
-            menuToggle.textContent =
-                isOpen ? "✕" : "☰";
-
-        });
+        }
+    );
 
 
-        /* Close menu after clicking a link */
+    /*
+        Close menu with Escape
+    */
 
-        nav.querySelectorAll("a").forEach(link => {
-
-            link.addEventListener("click", () => {
-
-                nav.classList.remove("active");
-
-                menuToggle.setAttribute(
-                    "aria-expanded",
-                    "false"
-                );
-
-                menuToggle.setAttribute(
-                    "aria-label",
-                    "Open navigation"
-                );
-
-                menuToggle.textContent = "☰";
-
-            });
-
-        });
-
-
-        /* Close menu when clicking outside */
-
-        document.addEventListener("click", event => {
+    document.addEventListener(
+        "keydown",
+        (event) => {
 
             if (
-                nav.classList.contains("active") &&
-                !nav.contains(event.target) &&
-                !menuToggle.contains(event.target)
+                event.key === "Escape" &&
+                nav.classList.contains("active")
             ) {
 
-                nav.classList.remove("active");
+                nav.classList.remove(
+                    "active"
+                );
+
+                menuToggle.classList.remove(
+                    "active"
+                );
 
                 menuToggle.setAttribute(
                     "aria-expanded",
                     "false"
                 );
 
-                menuToggle.setAttribute(
-                    "aria-label",
-                    "Open navigation"
-                );
-
-                menuToggle.textContent = "☰";
-
             }
 
-        });
+        }
+    );
 
+}
+
+
+/* =========================================================
+   HEADER SCROLL EFFECT
+   ========================================================= */
+
+function updateHeader() {
+
+    if (!siteHeader) {
+        return;
     }
 
+    if (window.scrollY > 35) {
 
+        siteHeader.classList.add(
+            "scrolled"
+        );
 
-    /* =====================================================
-       CURRENT YEAR
-       ===================================================== */
+    } else {
 
-    const year =
-        document.getElementById("year");
-
-
-    if (year) {
-
-        year.textContent =
-            new Date().getFullYear();
-
-    }
-
-
-
-    /* =====================================================
-       BOOKING DATE
-       Prevent users from selecting dates in the past.
-       ===================================================== */
-
-    const dateInput =
-        document.getElementById("date");
-
-
-    if (dateInput) {
-
-        const today =
-            new Date();
-
-        const yearValue =
-            today.getFullYear();
-
-        const monthValue =
-            String(today.getMonth() + 1)
-                .padStart(2, "0");
-
-        const dayValue =
-            String(today.getDate())
-                .padStart(2, "0");
-
-        const todayString =
-            `${yearValue}-${monthValue}-${dayValue}`;
-
-        dateInput.min =
-            todayString;
-
-    }
-
-
-
-    /* =====================================================
-       WHATSAPP BOOKING FORM
-       ===================================================== */
-
-    const bookingForm =
-        document.getElementById("bookingForm");
-
-
-    if (bookingForm) {
-
-        bookingForm.addEventListener(
-            "submit",
-            event => {
-
-                event.preventDefault();
-
-
-                /* -----------------------------------------
-                   Get form values
-                ----------------------------------------- */
-
-                const name =
-                    document
-                        .getElementById("name")
-                        ?.value
-                        .trim() || "";
-
-                const eventType =
-                    document
-                        .getElementById("eventType")
-                        ?.value || "";
-
-                const date =
-                    document
-                        .getElementById("date")
-                        ?.value || "";
-
-                const location =
-                    document
-                        .getElementById("location")
-                        ?.value
-                        .trim() || "";
-
-                const message =
-                    document
-                        .getElementById("message")
-                        ?.value
-                        .trim() || "";
-
-
-                /* -----------------------------------------
-                   Basic validation
-                ----------------------------------------- */
-
-                if (!name) {
-
-                    showFormMessage(
-                        "Please enter your name.",
-                        "error"
-                    );
-
-                    document
-                        .getElementById("name")
-                        ?.focus();
-
-                    return;
-
-                }
-
-
-                if (!eventType) {
-
-                    showFormMessage(
-                        "Please select your event type.",
-                        "error"
-                    );
-
-                    document
-                        .getElementById("eventType")
-                        ?.focus();
-
-                    return;
-
-                }
-
-
-                if (!date) {
-
-                    showFormMessage(
-                        "Please select your event date.",
-                        "error"
-                    );
-
-                    document
-                        .getElementById("date")
-                        ?.focus();
-
-                    return;
-
-                }
-
-
-                if (!location) {
-
-                    showFormMessage(
-                        "Please enter your event location.",
-                        "error"
-                    );
-
-                    document
-                        .getElementById("location")
-                        ?.focus();
-
-                    return;
-
-                }
-
-
-                /* -----------------------------------------
-                   Format date nicely
-                ----------------------------------------- */
-
-                const formattedDate =
-                    formatDate(date);
-
-
-                /* -----------------------------------------
-                   Create WhatsApp message
-                ----------------------------------------- */
-
-                const whatsappMessage =
-
-`Hi Ken NXT SA 👋
-
-I'd like to make a booking enquiry.
-
-━━━━━━━━━━━━━━━━━━
-
-👤 Name:
-${name}
-
-🎉 Event Type:
-${eventType}
-
-📅 Event Date:
-${formattedDate}
-
-📍 Event Location:
-${location}
-
-💬 Message:
-${message || "I'd like to discuss my event with you."}
-
-━━━━━━━━━━━━━━━━━━
-
-Looking forward to connecting!
-
-Ken NXT SA`;
-
-
-
-                /* -----------------------------------------
-                   WhatsApp URL
-                ----------------------------------------- */
-
-                const phoneNumber =
-                    "27722301683";
-
-
-                const whatsappURL =
-                    `https://wa.me/${phoneNumber}?text=` +
-                    encodeURIComponent(
-                        whatsappMessage
-                    );
-
-
-                /* -----------------------------------------
-                   Open WhatsApp
-                ----------------------------------------- */
-
-                window.open(
-                    whatsappURL,
-                    "_blank",
-                    "noopener,noreferrer"
-                );
-
-
-                /* -----------------------------------------
-                   Optional success feedback
-                ----------------------------------------- */
-
-                showFormMessage(
-                    "Your WhatsApp booking message is ready.",
-                    "success"
-                );
-
-            }
+        siteHeader.classList.remove(
+            "scrolled"
         );
 
     }
 
+}
 
 
-    /* =====================================================
-       FORMAT DATE
-       ===================================================== */
-
-    function formatDate(dateString) {
-
-        if (!dateString) {
-            return "Not specified";
-        }
-
-
-        const date =
-            new Date(
-                `${dateString}T00:00:00`
-            );
-
-
-        if (Number.isNaN(date.getTime())) {
-            return dateString;
-        }
-
-
-        return date.toLocaleDateString(
-            "en-ZA",
-            {
-                weekday: "long",
-                day: "2-digit",
-                month: "long",
-                year: "numeric"
-            }
-        );
-
+window.addEventListener(
+    "scroll",
+    updateHeader,
+    {
+        passive: true
     }
+);
+
+updateHeader();
 
 
+/* =========================================================
+   SCROLL REVEAL
+   ========================================================= */
 
-    /* =====================================================
-       FORM FEEDBACK
-       ===================================================== */
-
-    function showFormMessage(
-        message,
-        type = "success"
-    ) {
-
-        const existingMessage =
-            document.querySelector(
-                ".form-feedback"
-            );
+const revealElements =
+    document.querySelectorAll(".reveal");
 
 
-        if (existingMessage) {
-            existingMessage.remove();
-        }
+if (
+    "IntersectionObserver" in window
+) {
 
+    const revealObserver =
+        new IntersectionObserver(
+            (
+                entries,
+                observer
+            ) => {
 
-        const feedback =
-            document.createElement("div");
-
-
-        feedback.className =
-            `form-feedback ${type}`;
-
-
-        feedback.textContent =
-            message;
-
-
-        const formNote =
-            bookingForm?.querySelector(
-                ".form-note"
-            );
-
-
-        if (formNote) {
-
-            formNote.insertAdjacentElement(
-                "afterend",
-                feedback
-            );
-
-        } else if (bookingForm) {
-
-            bookingForm.appendChild(
-                feedback
-            );
-
-        }
-
-
-        /* Remove feedback after a few seconds */
-
-        setTimeout(() => {
-
-            feedback.classList.add(
-                "fade-out"
-            );
-
-            setTimeout(() => {
-                feedback.remove();
-            }, 400);
-
-        }, 5000);
-
-    }
-
-
-
-    /* =====================================================
-       SCROLL REVEAL ANIMATIONS
-       ===================================================== */
-
-    const revealElements =
-        document.querySelectorAll(
-            ".reveal"
-        );
-
-
-    if (
-        revealElements.length &&
-        "IntersectionObserver" in window
-    ) {
-
-        const revealObserver =
-            new IntersectionObserver(
-                entries => {
-
-                    entries.forEach(entry => {
+                entries.forEach(
+                    (entry) => {
 
                         if (
                             entry.isIntersecting
                         ) {
 
-                            entry.target
-                                .classList
-                                .add("visible");
+                            entry.target.classList.add(
+                                "visible"
+                            );
 
-
-                            revealObserver.unobserve(
+                            observer.unobserve(
                                 entry.target
                             );
 
                         }
 
-                    });
+                    }
+                );
 
-                },
-                {
-                    threshold: 0.12,
-                    rootMargin:
-                        "0px 0px -40px 0px"
-                }
+            },
+            {
+                threshold: 0.12,
+                rootMargin:
+                    "0px 0px -50px 0px"
+            }
+        );
+
+
+    revealElements.forEach(
+        (element) => {
+
+            revealObserver.observe(
+                element
             );
 
+        }
+    );
 
-        revealElements.forEach(
-            element => {
+} else {
 
-                revealObserver.observe(
-                    element
-                );
+    revealElements.forEach(
+        (element) => {
 
-            }
-        );
+            element.classList.add(
+                "visible"
+            );
 
-    } else {
+        }
+    );
 
-        revealElements.forEach(
-            element => {
-
-                element.classList.add(
-                    "visible"
-                );
-
-            }
-        );
-
-    }
+}
 
 
+/* =========================================================
+   ACTIVE NAVIGATION
+   ========================================================= */
 
-    /* =====================================================
-       NAVBAR SCROLL EFFECT
-       ===================================================== */
+const sections =
+    document.querySelectorAll(
+        "main section[id]"
+    );
 
-    const header =
-        document.querySelector(
-            ".site-header"
-        );
-
-
-    if (header) {
-
-        const handleHeaderScroll =
-            () => {
-
-                if (
-                    window.scrollY > 40
-                ) {
-
-                    header.classList.add(
-                        "scrolled"
-                    );
-
-                } else {
-
-                    header.classList.remove(
-                        "scrolled"
-                    );
-
-                }
-
-            };
+const navLinks =
+    document.querySelectorAll(
+        ".nav a:not(.nav-book)"
+    );
 
 
-        window.addEventListener(
-            "scroll",
-            handleHeaderScroll,
-            {
-                passive: true
-            }
-        );
+if (
+    "IntersectionObserver" in window &&
+    sections.length &&
+    navLinks.length
+) {
 
+    const sectionObserver =
+        new IntersectionObserver(
+            (entries) => {
 
-        handleHeaderScroll();
-
-    }
-
-
-
-    /* =====================================================
-       ACTIVE NAVIGATION LINK
-       Highlights the section currently visible.
-       ===================================================== */
-
-    const sections =
-        document.querySelectorAll(
-            "main section[id]"
-        );
-
-    const navLinks =
-        document.querySelectorAll(
-            '.nav a[href^="#"]'
-        );
-
-
-    if (
-        sections.length &&
-        navLinks.length &&
-        "IntersectionObserver" in window
-    ) {
-
-        const sectionObserver =
-            new IntersectionObserver(
-                entries => {
-
-                    entries.forEach(entry => {
+                entries.forEach(
+                    (entry) => {
 
                         if (
                             entry.isIntersecting
                         ) {
 
-                            const sectionId =
-                                entry.target.id;
-
-
                             navLinks.forEach(
-                                link => {
+                                (link) => {
 
                                     link.classList.remove(
                                         "active"
                                     );
 
-
-                                    if (
+                                    const href =
                                         link.getAttribute(
                                             "href"
-                                        ) ===
-                                        `#${sectionId}`
+                                        );
+
+                                    if (
+                                        href ===
+                                        `#${entry.target.id}`
                                     ) {
 
                                         link.classList.add(
@@ -651,54 +292,350 @@ Ken NXT SA`;
 
                         }
 
-                    });
-
-                },
-                {
-                    threshold: 0.25,
-                    rootMargin:
-                        "-20% 0px -60% 0px"
-                }
-            );
-
-
-        sections.forEach(
-            section => {
-
-                sectionObserver.observe(
-                    section
+                    }
                 );
 
+            },
+            {
+                rootMargin:
+                    "-35% 0px -55% 0px"
             }
         );
 
+
+    sections.forEach(
+        (section) => {
+
+            sectionObserver.observe(
+                section
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   CURRENT YEAR
+   ========================================================= */
+
+if (yearElement) {
+
+    yearElement.textContent =
+        new Date().getFullYear();
+
+}
+
+
+/* =========================================================
+   BOOKING DATE
+   ========================================================= */
+
+if (dateInput) {
+
+    const today =
+        new Date();
+
+    const year =
+        today.getFullYear();
+
+    const month =
+        String(
+            today.getMonth() + 1
+        ).padStart(2, "0");
+
+    const day =
+        String(
+            today.getDate()
+        ).padStart(2, "0");
+
+    const minimumDate =
+        `${year}-${month}-${day}`;
+
+    dateInput.min =
+        minimumDate;
+
+}
+
+
+/* =========================================================
+   DATE FORMATTER
+   ========================================================= */
+
+function formatDate(
+    dateString
+) {
+
+    if (!dateString) {
+        return "Not specified";
+    }
+
+    const date =
+        new Date(
+            `${dateString}T12:00:00`
+        );
+
+    if (
+        Number.isNaN(
+            date.getTime()
+        )
+    ) {
+
+        return dateString;
+
+    }
+
+    return date.toLocaleDateString(
+        "en-ZA",
+        {
+            weekday: "long",
+            year: "numeric",
+            month: "long",
+            day: "numeric"
+        }
+    );
+
+}
+
+
+/* =========================================================
+   WHATSAPP BOOKING
+   ========================================================= */
+
+if (bookingForm) {
+
+    bookingForm.addEventListener(
+        "submit",
+        function (event) {
+
+            event.preventDefault();
+
+
+            /*
+                Get values
+            */
+
+            const name =
+                document
+                    .getElementById("name")
+                    ?.value
+                    .trim();
+
+            const eventType =
+                document
+                    .getElementById("eventType")
+                    ?.value
+                    .trim();
+
+            const date =
+                document
+                    .getElementById("date")
+                    ?.value
+                    .trim();
+
+            const location =
+                document
+                    .getElementById("location")
+                    ?.value
+                    .trim();
+
+            const message =
+                document
+                    .getElementById("message")
+                    ?.value
+                    .trim();
+
+
+            /*
+                Basic validation
+            */
+
+            if (
+                !name ||
+                !eventType ||
+                !date ||
+                !location
+            ) {
+
+                showFormMessage(
+                    "Please complete all required fields."
+                );
+
+                return;
+
+            }
+
+
+            /*
+                Prevent past dates
+            */
+
+            if (
+                dateInput &&
+                dateInput.value < dateInput.min
+            ) {
+
+                showFormMessage(
+                    "Please select a future event date."
+                );
+
+                return;
+
+            }
+
+
+            /*
+                Format event date
+            */
+
+            const readableDate =
+                formatDate(date);
+
+
+            /*
+                Create WhatsApp message
+            */
+
+            const whatsappMessage =
+
+`🔥 KEN NXT SA — BOOKING ENQUIRY
+
+Hi Ken NXT SA,
+
+I'd like to enquire about booking you for an event.
+
+👤 Name:
+${name}
+
+🎧 Event Type:
+${eventType}
+
+📅 Event Date:
+${readableDate}
+
+📍 Event Location:
+${location}
+
+💬 Message:
+${message || "No additional message provided."}
+
+Looking forward to hearing from you.
+
+— Sent via the Ken NXT SA website`;
+
+
+            /*
+                Encode message
+            */
+
+            const encodedMessage =
+                encodeURIComponent(
+                    whatsappMessage
+                );
+
+
+            /*
+                WhatsApp URL
+            */
+
+            const whatsappURL =
+                `https://wa.me/27722301683?text=${encodedMessage}`;
+
+
+            /*
+                Open WhatsApp
+            */
+
+            window.open(
+                whatsappURL,
+                "_blank",
+                "noopener,noreferrer"
+            );
+
+
+            /*
+                Visual confirmation
+            */
+
+            showFormMessage(
+                "Opening WhatsApp with your booking enquiry..."
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   FORM MESSAGE
+   ========================================================= */
+
+function showFormMessage(
+    text
+) {
+
+    const formNote =
+        document.querySelector(
+            ".form-note"
+        );
+
+    if (!formNote) {
+        return;
     }
 
 
+    const originalText =
+        formNote.textContent;
 
-    /* =====================================================
-       SMOOTH ANCHOR SCROLL
-       ===================================================== */
 
-    document
-        .querySelectorAll(
-            'a[href^="#"]'
-        )
-        .forEach(link => {
+    formNote.textContent =
+        text;
 
-            link.addEventListener(
+    formNote.style.color =
+        "#ed72ff";
+
+
+    setTimeout(
+        () => {
+
+            formNote.textContent =
+                originalText;
+
+            formNote.style.color =
+                "";
+
+        },
+        5000
+    );
+
+}
+
+
+/* =========================================================
+   SMOOTH ANCHOR SCROLL
+   ========================================================= */
+
+document
+    .querySelectorAll(
+        'a[href^="#"]'
+    )
+    .forEach(
+        (anchor) => {
+
+            anchor.addEventListener(
                 "click",
-                event => {
+                function (event) {
 
-                    const targetId =
-                        link.getAttribute(
+                    const targetID =
+                        this.getAttribute(
                             "href"
                         );
 
-
                     if (
-                        !targetId ||
-                        targetId === "#"
+                        !targetID ||
+                        targetID === "#"
                     ) {
                         return;
                     }
@@ -706,7 +643,7 @@ Ken NXT SA`;
 
                     const target =
                         document.querySelector(
-                            targetId
+                            targetID
                         );
 
 
@@ -718,357 +655,252 @@ Ken NXT SA`;
                     event.preventDefault();
 
 
-                    const headerHeight =
-                        header
-                            ? header.offsetHeight
-                            : 0;
-
+                    const headerOffset =
+                        85;
 
                     const targetPosition =
                         target.getBoundingClientRect()
-                            .top +
-                        window.scrollY -
-                        headerHeight -
-                        10;
+                            .top
+                        +
+                        window.scrollY
+                        -
+                        headerOffset;
 
 
-                    window.scrollTo({
-                        top:
-                            targetPosition,
-                        behavior:
-                            "smooth"
-                    });
+                    window.scrollTo(
+                        {
+                            top:
+                                targetPosition,
 
-                }
-            );
-
-        });
-
-
-
-    /* =====================================================
-       BUTTON RIPPLE EFFECT
-       ===================================================== */
-
-    const buttons =
-        document.querySelectorAll(
-            ".btn"
-        );
-
-
-    buttons.forEach(button => {
-
-        button.addEventListener(
-            "click",
-            event => {
-
-                const ripple =
-                    document.createElement(
-                        "span"
-                    );
-
-
-                ripple.className =
-                    "button-ripple";
-
-
-                const rect =
-                    button.getBoundingClientRect();
-
-
-                const x =
-                    event.clientX -
-                    rect.left;
-
-
-                const y =
-                    event.clientY -
-                    rect.top;
-
-
-                ripple.style.left =
-                    `${x}px`;
-
-                ripple.style.top =
-                    `${y}px`;
-
-
-                button.appendChild(
-                    ripple
-                );
-
-
-                setTimeout(() => {
-
-                    ripple.remove();
-
-                }, 600);
-
-            }
-        );
-
-    });
-
-
-
-    /* =====================================================
-       IMAGE LOADING EFFECT
-       ===================================================== */
-
-    const images =
-        document.querySelectorAll(
-            "img"
-        );
-
-
-    images.forEach(image => {
-
-        if (image.complete) {
-
-            image.classList.add(
-                "loaded"
-            );
-
-        } else {
-
-            image.addEventListener(
-                "load",
-                () => {
-
-                    image.classList.add(
-                        "loaded"
+                            behavior:
+                                "smooth"
+                        }
                     );
 
                 }
             );
-
-        }
-
-    });
-
-
-
-    /* =====================================================
-       ESCAPE KEY
-       Closes mobile navigation.
-       ===================================================== */
-
-    document.addEventListener(
-        "keydown",
-        event => {
-
-            if (
-                event.key === "Escape" &&
-                nav?.classList.contains(
-                    "active"
-                )
-            ) {
-
-                nav.classList.remove(
-                    "active"
-                );
-
-
-                menuToggle?.setAttribute(
-                    "aria-expanded",
-                    "false"
-                );
-
-
-                menuToggle?.setAttribute(
-                    "aria-label",
-                    "Open navigation"
-                );
-
-
-                if (menuToggle) {
-                    menuToggle.textContent =
-                        "☰";
-                }
-
-            }
 
         }
     );
 
-});
 
+/* =========================================================
+   BUTTON RIPPLE
+   ========================================================= */
+
+document
+    .querySelectorAll(
+        ".btn"
+    )
+    .forEach(
+        (button) => {
+
+            button.addEventListener(
+                "pointerdown",
+                function (event) {
+
+                    const rect =
+                        this.getBoundingClientRect();
+
+
+                    const ripple =
+                        document.createElement(
+                            "span"
+                        );
+
+
+                    const size =
+                        Math.max(
+                            rect.width,
+                            rect.height
+                        );
+
+
+                    ripple.style.position =
+                        "absolute";
+
+                    ripple.style.width =
+                        `${size}px`;
+
+                    ripple.style.height =
+                        `${size}px`;
+
+                    ripple.style.borderRadius =
+                        "50%";
+
+                    ripple.style.background =
+                        "rgba(255,255,255,.18)";
+
+                    ripple.style.pointerEvents =
+                        "none";
+
+                    ripple.style.left =
+                        `${event.clientX - rect.left - size / 2}px`;
+
+                    ripple.style.top =
+                        `${event.clientY - rect.top - size / 2}px`;
+
+                    ripple.style.transform =
+                        "scale(0)";
+
+                    ripple.style.opacity =
+                        "1";
+
+                    ripple.style.transition =
+                        "transform .5s ease, opacity .5s ease";
+
+
+                    this.style.overflow =
+                        "hidden";
+
+                    this.appendChild(
+                        ripple
+                    );
+
+
+                    requestAnimationFrame(
+                        () => {
+
+                            ripple.style.transform =
+                                "scale(2)";
+
+                            ripple.style.opacity =
+                                "0";
+
+                        }
+                    );
+
+
+                    setTimeout(
+                        () => {
+
+                            ripple.remove();
+
+                        },
+                        600
+                    );
+
+                }
+            );
+
+        }
+    );
 
 
 /* =========================================================
-   EXTRA CSS CLASSES CREATED BY JS
-
-   These styles are injected here so you don't have to
-   change styles.css immediately.
+   CARD TILT — DESKTOP ONLY
    ========================================================= */
 
-const dynamicStyles =
-    document.createElement("style");
+const canHover =
+    window.matchMedia(
+        "(hover: hover) and (pointer: fine)"
+    ).matches;
 
 
-dynamicStyles.textContent = `
+if (canHover) {
 
-    /* Header scroll state */
+    document
+        .querySelectorAll(
+            ".genre-card, .event-card"
+        )
+        .forEach(
+            (card) => {
 
-    .site-header.scrolled {
-        background:
-            rgba(8, 5, 13, .88);
-        box-shadow:
-            0 10px 35px rgba(0,0,0,.18);
-    }
+                card.addEventListener(
+                    "pointermove",
+                    (event) => {
 
-
-    /* Active navigation */
-
-    .nav a.active {
-        color:
-            #c58cff;
-    }
+                        const rect =
+                            card.getBoundingClientRect();
 
 
-    /* Form feedback */
-
-    .form-feedback {
-        margin-top: 12px;
-        padding: 12px 14px;
-        border-radius: 10px;
-        font-size: .85rem;
-        font-weight: 600;
-        animation:
-            feedbackIn .3s ease forwards;
-    }
+                        const x =
+                            event.clientX -
+                            rect.left;
 
 
-    .form-feedback.success {
-        color: #b9ffd0;
-        background:
-            rgba(37, 211, 102, .10);
-        border:
-            1px solid rgba(37, 211, 102, .25);
-    }
+                        const y =
+                            event.clientY -
+                            rect.top;
 
 
-    .form-feedback.error {
-        color: #ffd0d0;
-        background:
-            rgba(255, 70, 70, .10);
-        border:
-            1px solid rgba(255, 70, 70, .25);
-    }
+                        const rotateX =
+                            ((y / rect.height) - .5) * -3;
 
 
-    .form-feedback.fade-out {
-        opacity: 0;
-        transform:
-            translateY(-5px);
-        transition:
-            opacity .4s ease,
-            transform .4s ease;
-    }
+                        const rotateY =
+                            ((x / rect.width) - .5) * 3;
 
 
-    /* Button ripple */
+                        card.style.transform =
+                            `perspective(700px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
 
-    .btn {
-        position: relative;
-        overflow: hidden;
-    }
-
-
-    .button-ripple {
-        position: absolute;
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-        pointer-events: none;
-
-        background:
-            rgba(255,255,255,.35);
-
-        transform:
-            translate(-50%, -50%)
-            scale(0);
-
-        animation:
-            buttonRipple .6s ease-out;
-    }
+                    }
+                );
 
 
-    /* Image loading */
+                card.addEventListener(
+                    "pointerleave",
+                    () => {
 
-    img {
-        opacity: 0;
-        transition:
-            opacity .5s ease;
-    }
+                        card.style.transform =
+                            "";
+
+                    }
+                );
+
+            }
+        );
+
+}
 
 
-    img.loaded {
-        opacity: 1;
-    }
+/* =========================================================
+   ESCAPE EXTERNAL MENU
+   ========================================================= */
 
+window.addEventListener(
+    "resize",
+    () => {
 
-    /* Animations */
+        if (
+            window.innerWidth > 850 &&
+            nav
+        ) {
 
-    @keyframes buttonRipple {
+            nav.classList.remove(
+                "active"
+            );
 
-        to {
-            transform:
-                translate(-50%, -50%)
-                scale(30);
-            opacity: 0;
+            if (menuToggle) {
+
+                menuToggle.classList.remove(
+                    "active"
+                );
+
+                menuToggle.setAttribute(
+                    "aria-expanded",
+                    "false"
+                );
+
+            }
+
         }
 
     }
-
-
-    @keyframes feedbackIn {
-
-        from {
-            opacity: 0;
-            transform:
-                translateY(8px);
-        }
-
-        to {
-            opacity: 1;
-            transform:
-                translateY(0);
-        }
-
-    }
-
-
-    /* Respect reduced motion */
-
-    @media (prefers-reduced-motion: reduce) {
-
-        html {
-            scroll-behavior: auto;
-        }
-
-        *,
-        *::before,
-        *::after {
-            animation-duration:
-                .01ms !important;
-
-            animation-iteration-count:
-                1 !important;
-
-            transition-duration:
-                .01ms !important;
-
-            scroll-behavior:
-                auto !important;
-        }
-
-    }
-
-`;
-
-
-document.head.appendChild(
-    dynamicStyles
 );
-```
+
+
+/* =========================================================
+   CONSOLE BRANDING
+   ========================================================= */
+
+console.log(
+    "%cKEN NXT SA",
+    "font-size: 28px; font-weight: 900; color: #d000ff;"
+);
+
+console.log(
+    "%cBringing the vibe. Creating the moment.",
+    "font-size: 14px; color: #ed72ff;"
+);
