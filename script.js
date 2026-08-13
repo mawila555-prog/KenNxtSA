@@ -3,621 +3,949 @@
    WEBSITE JAVASCRIPT
 ========================================================= */
 
-document.addEventListener("DOMContentLoaded", () => {
+"use strict";
 
 
-    /* =====================================================
-       YEAR
-    ===================================================== */
+/* =========================================================
+   ELEMENTS
+========================================================= */
 
-    const year = document.getElementById("year");
+const siteHeader =
+    document.getElementById("siteHeader");
 
-    if (year) {
-        year.textContent = new Date().getFullYear();
+const menuToggle =
+    document.getElementById("menuToggle");
+
+const nav =
+    document.getElementById("nav");
+
+const bookingForm =
+    document.getElementById("bookingForm");
+
+const backToTop =
+    document.getElementById("backToTop");
+
+const yearElement =
+    document.getElementById("year");
+
+const dateInput =
+    document.getElementById("date");
+
+
+/* =========================================================
+   CURRENT YEAR
+========================================================= */
+
+if (yearElement) {
+
+    yearElement.textContent =
+        new Date().getFullYear();
+
+}
+
+
+/* =========================================================
+   HEADER SCROLL EFFECT
+========================================================= */
+
+function updateHeader() {
+
+    if (!siteHeader) {
+        return;
     }
 
+    if (window.scrollY > 30) {
 
-    /* =====================================================
-       MOBILE MENU
-    ===================================================== */
+        siteHeader.classList.add(
+            "scrolled"
+        );
 
-    const menuToggle =
-        document.querySelector(".menu-toggle");
+    } else {
 
-    const nav =
-        document.getElementById("nav");
-
-    const body =
-        document.body;
-
-
-    if (menuToggle && nav) {
-
-        menuToggle.addEventListener("click", () => {
-
-            const isOpen =
-                nav.classList.toggle("open");
-
-            menuToggle.setAttribute(
-                "aria-expanded",
-                String(isOpen)
-            );
-
-            body.classList.toggle(
-                "menu-open",
-                isOpen
-            );
-
-        });
-
-
-        nav.querySelectorAll("a")
-            .forEach(link => {
-
-                link.addEventListener("click", () => {
-
-                    nav.classList.remove("open");
-
-                    menuToggle.setAttribute(
-                        "aria-expanded",
-                        "false"
-                    );
-
-                    body.classList.remove(
-                        "menu-open"
-                    );
-
-                });
-
-            });
-
-    }
-
-
-    /* =====================================================
-       DJ PHOTO FALLBACK
-       
-       This means the website will try:
-       ken-nxt-sa.jpg
-       ken-nxt-sa.jpeg
-       ken-nxt-sa.png
-       ken-nxt-sa.webp
-    ===================================================== */
-
-    const kenPhoto =
-        document.getElementById("kenPhoto");
-
-
-    if (kenPhoto) {
-
-        const imageOptions = [
-            "./ken-nxt-sa.jpg",
-            "./ken-nxt-sa.jpeg",
-            "./ken-nxt-sa.png",
-            "./ken-nxt-sa.webp"
-        ];
-
-        let imageIndex = 0;
-
-        kenPhoto.addEventListener(
-            "error",
-            () => {
-
-                imageIndex++;
-
-                if (
-                    imageIndex <
-                    imageOptions.length
-                ) {
-
-                    kenPhoto.src =
-                        imageOptions[imageIndex];
-
-                } else {
-
-                    console.warn(
-                        "Ken NXT SA image could not be found. Please place ken-nxt-sa.jpg in the same folder as index.html."
-                    );
-
-                    kenPhoto.style.display =
-                        "none";
-
-                }
-
-            }
+        siteHeader.classList.remove(
+            "scrolled"
         );
 
     }
 
+}
 
-    /* =====================================================
-       BOOKING DATE
-    ===================================================== */
+window.addEventListener(
+    "scroll",
+    updateHeader,
+    {
+        passive: true
+    }
+);
 
-    const dateInput =
-        document.getElementById("date");
+updateHeader();
 
 
-    if (dateInput) {
+/* =========================================================
+   MOBILE MENU
+========================================================= */
 
-        const today =
-            new Date();
+function openMenu() {
 
-        const year =
-            today.getFullYear();
+    if (!menuToggle || !nav) {
+        return;
+    }
 
-        const month =
-            String(
-                today.getMonth() + 1
-            ).padStart(2, "0");
+    menuToggle.classList.add(
+        "active"
+    );
 
-        const day =
-            String(
-                today.getDate()
-            ).padStart(2, "0");
+    nav.classList.add(
+        "active"
+    );
 
-        dateInput.min =
-            `${year}-${month}-${day}`;
+    document.body.classList.add(
+        "menu-open"
+    );
+
+    menuToggle.setAttribute(
+        "aria-expanded",
+        "true"
+    );
+
+    menuToggle.setAttribute(
+        "aria-label",
+        "Close navigation"
+    );
+
+}
+
+
+function closeMenu() {
+
+    if (!menuToggle || !nav) {
+        return;
+    }
+
+    menuToggle.classList.remove(
+        "active"
+    );
+
+    nav.classList.remove(
+        "active"
+    );
+
+    document.body.classList.remove(
+        "menu-open"
+    );
+
+    menuToggle.setAttribute(
+        "aria-expanded",
+        "false"
+    );
+
+    menuToggle.setAttribute(
+        "aria-label",
+        "Open navigation"
+    );
+
+}
+
+
+function toggleMenu() {
+
+    if (!nav) {
+        return;
+    }
+
+    const menuIsOpen =
+        nav.classList.contains(
+            "active"
+        );
+
+    if (menuIsOpen) {
+
+        closeMenu();
+
+    } else {
+
+        openMenu();
 
     }
 
-
-    /* =====================================================
-       WHATSAPP BOOKING FORM
-    ===================================================== */
-
-    const bookingForm =
-        document.getElementById("bookingForm");
+}
 
 
-    if (bookingForm) {
+if (menuToggle) {
 
-        bookingForm.addEventListener(
-            "submit",
-            (event) => {
+    menuToggle.addEventListener(
+        "click",
+        toggleMenu
+    );
 
-                event.preventDefault();
-
-
-                const name =
-                    document
-                        .getElementById("name")
-                        ?.value
-                        .trim();
+}
 
 
-                const eventType =
-                    document
-                        .getElementById("eventType")
-                        ?.value
-                        .trim();
+/* =========================================================
+   CLOSE MOBILE MENU WHEN NAVIGATION LINK IS SELECTED
+========================================================= */
+
+if (nav) {
+
+    const navLinks =
+        nav.querySelectorAll("a");
 
 
-                const date =
-                    document
-                        .getElementById("date")
-                        ?.value
-                        .trim();
+    navLinks.forEach(
+        (link) => {
+
+            link.addEventListener(
+                "click",
+                closeMenu
+            );
+
+        }
+    );
+
+}
 
 
-                const guests =
-                    document
-                        .getElementById("guests")
-                        ?.value
-                        .trim();
+/* =========================================================
+   CLOSE MENU WITH ESCAPE KEY
+========================================================= */
+
+document.addEventListener(
+    "keydown",
+    (event) => {
+
+        if (
+            event.key === "Escape" &&
+            nav &&
+            nav.classList.contains("active")
+        ) {
+
+            closeMenu();
+
+        }
+
+    }
+);
 
 
-                const location =
-                    document
-                        .getElementById("location")
-                        ?.value
-                        .trim();
+/* =========================================================
+   CLOSE MOBILE MENU WHEN RESIZING TO DESKTOP
+========================================================= */
+
+window.addEventListener(
+    "resize",
+    () => {
+
+        if (
+            window.innerWidth > 850 &&
+            nav &&
+            nav.classList.contains("active")
+        ) {
+
+            closeMenu();
+
+        }
+
+    }
+);
 
 
-                const message =
-                    document
-                        .getElementById("message")
-                        ?.value
-                        .trim();
+/* =========================================================
+   CLOSE MOBILE MENU WHEN CLICKING OUTSIDE
+========================================================= */
+
+document.addEventListener(
+    "click",
+    (event) => {
+
+        if (
+            !nav ||
+            !menuToggle ||
+            !nav.classList.contains("active")
+        ) {
+
+            return;
+
+        }
+
+
+        const clickedInsideNav =
+            nav.contains(event.target);
+
+        const clickedMenuButton =
+            menuToggle.contains(event.target);
+
+
+        if (
+            !clickedInsideNav &&
+            !clickedMenuButton
+        ) {
+
+            closeMenu();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   SMOOTH INTERNAL LINK SCROLLING
+========================================================= */
+
+const internalLinks =
+    document.querySelectorAll(
+        'a[href^="#"]'
+    );
+
+
+internalLinks.forEach(
+    (link) => {
+
+        link.addEventListener(
+            "click",
+            function (event) {
+
+                const targetID =
+                    this.getAttribute(
+                        "href"
+                    );
 
 
                 if (
-                    !name ||
-                    !eventType ||
-                    !date ||
-                    !location
+                    !targetID ||
+                    targetID === "#"
                 ) {
-
-                    alert(
-                        "Please complete your name, event type, event date and event location."
-                    );
 
                     return;
 
                 }
 
 
-                const formattedDate =
-                    formatDate(date);
-
-
-                const whatsappMessage =
-`🔥 KEN NXT SA BOOKING ENQUIRY
-
-Hi Ken NXT SA,
-
-I would like to enquire about booking you.
-
-👤 Name:
-${name}
-
-🎧 Event Type:
-${eventType}
-
-📅 Event Date:
-${formattedDate}
-
-👥 Guest / Crowd Size:
-${guests || "Not specified"}
-
-📍 Event Location:
-${location}
-
-💬 Message:
-${message || "No additional message."}
-
-Looking forward to hearing from you.
-
-— Sent from the Ken NXT SA website`;
-
-
-                const encodedMessage =
-                    encodeURIComponent(
-                        whatsappMessage
+                const target =
+                    document.querySelector(
+                        targetID
                     );
 
 
-                const whatsappURL =
-                    `https://wa.me/27722301683?text=${encodedMessage}`;
+                if (!target) {
 
-
-                window.open(
-                    whatsappURL,
-                    "_blank",
-                    "noopener,noreferrer"
-                );
-
-            }
-        );
-
-    }
-
-
-    /* =====================================================
-       DATE FORMATTER
-    ===================================================== */
-
-    function formatDate(dateString) {
-
-        if (!dateString) {
-            return "Not specified";
-        }
-
-        const date =
-            new Date(
-                `${dateString}T12:00:00`
-            );
-
-        if (
-            Number.isNaN(
-                date.getTime()
-            )
-        ) {
-            return dateString;
-        }
-
-        return date.toLocaleDateString(
-            "en-ZA",
-            {
-                day: "numeric",
-                month: "long",
-                year: "numeric"
-            }
-        );
-
-    }
-
-
-    /* =====================================================
-       SCROLL REVEAL
-    ===================================================== */
-
-    const revealElements =
-        document.querySelectorAll(
-            ".section-heading, .genre-card, .service-card, .event-item, .media-card, .mixes-panel, .quote-card, .booking-form"
-        );
-
-
-    revealElements.forEach(
-        element => {
-            element.classList.add("reveal");
-        }
-    );
-
-
-    if (
-        "IntersectionObserver"
-        in window
-    ) {
-
-        const observer =
-            new IntersectionObserver(
-                entries => {
-
-                    entries.forEach(
-                        entry => {
-
-                            if (
-                                entry.isIntersecting
-                            ) {
-
-                                entry.target.classList.add(
-                                    "visible"
-                                );
-
-                                observer.unobserve(
-                                    entry.target
-                                );
-
-                            }
-
-                        }
-                    );
-
-                },
-                {
-                    threshold: 0.12
-                }
-            );
-
-
-        revealElements.forEach(
-            element => {
-
-                observer.observe(
-                    element
-                );
-
-            }
-        );
-
-    } else {
-
-        revealElements.forEach(
-            element => {
-
-                element.classList.add(
-                    "visible"
-                );
-
-            }
-        );
-
-    }
-
-
-    /* =====================================================
-       BACK TO TOP
-    ===================================================== */
-
-    const backToTop =
-        document.getElementById(
-            "backToTop"
-        );
-
-
-    if (backToTop) {
-
-        window.addEventListener(
-            "scroll",
-            () => {
-
-                if (
-                    window.scrollY > 700
-                ) {
-
-                    backToTop.classList.add(
-                        "show"
-                    );
-
-                } else {
-
-                    backToTop.classList.remove(
-                        "show"
-                    );
+                    return;
 
                 }
 
-            },
-            {
-                passive: true
-            }
-        );
+
+                event.preventDefault();
 
 
-        backToTop.addEventListener(
-            "click",
-            () => {
+                const headerOffset =
+                    siteHeader
+                        ? siteHeader.offsetHeight + 15
+                        : 90;
+
+
+                const targetPosition =
+                    target.getBoundingClientRect().top +
+                    window.scrollY -
+                    headerOffset;
+
 
                 window.scrollTo({
-                    top: 0,
-                    behavior: "smooth"
+
+                    top:
+                        targetPosition,
+
+                    behavior:
+                        "smooth"
+
                 });
 
             }
         );
 
     }
+);
 
 
-    /* =====================================================
-       HERO MOUSE LIGHTING
-    ===================================================== */
+/* =========================================================
+   SET MINIMUM BOOKING DATE TO TODAY
+========================================================= */
 
-    const hero =
-        document.querySelector(
-            ".hero"
+if (dateInput) {
+
+    const now =
+        new Date();
+
+
+    const year =
+        now.getFullYear();
+
+
+    const month =
+        String(
+            now.getMonth() + 1
+        ).padStart(
+            2,
+            "0"
         );
 
 
-    const heroGlow =
-        document.querySelector(
-            ".hero-glow"
+    const day =
+        String(
+            now.getDate()
+        ).padStart(
+            2,
+            "0"
         );
 
 
-    if (
-        hero &&
-        heroGlow &&
-        window.matchMedia(
-            "(pointer: fine)"
-        ).matches
-    ) {
+    const today =
+        `${year}-${month}-${day}`;
 
-        hero.addEventListener(
-            "mousemove",
-            event => {
 
-                const rect =
-                    hero.getBoundingClientRect();
+    dateInput.setAttribute(
+        "min",
+        today
+    );
 
-                const x =
-                    event.clientX -
-                    rect.left;
+}
 
-                const y =
-                    event.clientY -
-                    rect.top;
 
-                heroGlow.style.transform =
-                    `translate(
-                        ${(x - rect.width / 2) * 0.04}px,
-                        ${(y - rect.height / 2) * 0.04}px
-                    ) scale(1.05)`;
+/* =========================================================
+   BOOKING FORM
+   SEND ENQUIRY DIRECTLY TO WHATSAPP
+========================================================= */
+
+if (bookingForm) {
+
+    bookingForm.addEventListener(
+        "submit",
+        function (event) {
+
+            event.preventDefault();
+
+
+            /* ---------------------------------------------
+               FORM VALUES
+            --------------------------------------------- */
+
+            const name =
+                document
+                    .getElementById("name")
+                    ?.value
+                    .trim() || "";
+
+
+            const eventType =
+                document
+                    .getElementById("eventType")
+                    ?.value || "";
+
+
+            const eventDate =
+                document
+                    .getElementById("date")
+                    ?.value || "";
+
+
+            const guests =
+                document
+                    .getElementById("guests")
+                    ?.value
+                    .trim() || "";
+
+
+            const location =
+                document
+                    .getElementById("location")
+                    ?.value
+                    .trim() || "";
+
+
+            const message =
+                document
+                    .getElementById("message")
+                    ?.value
+                    .trim() || "";
+
+
+            /* ---------------------------------------------
+               BASIC VALIDATION
+            --------------------------------------------- */
+
+            if (
+                !name ||
+                !eventType ||
+                !eventDate ||
+                !location
+            ) {
+
+                alert(
+                    "Please complete your name, event type, event date and event location."
+                );
+
+                return;
 
             }
+
+
+            /* ---------------------------------------------
+               FORMAT DATE
+            --------------------------------------------- */
+
+            let formattedDate =
+                eventDate;
+
+
+            const parsedDate =
+                new Date(
+                    `${eventDate}T12:00:00`
+                );
+
+
+            if (
+                !Number.isNaN(
+                    parsedDate.getTime()
+                )
+            ) {
+
+                formattedDate =
+                    parsedDate.toLocaleDateString(
+                        "en-ZA",
+                        {
+                            day:
+                                "2-digit",
+
+                            month:
+                                "long",
+
+                            year:
+                                "numeric"
+                        }
+                    );
+
+            }
+
+
+            /* ---------------------------------------------
+               WHATSAPP MESSAGE
+            --------------------------------------------- */
+
+            const whatsappMessage = [
+
+                "Hi Ken NXT SA 👋",
+
+                "",
+
+                "I would like to make a DJ booking enquiry.",
+
+                "",
+
+                `Name: ${name}`,
+
+                `Event Type: ${eventType}`,
+
+                `Event Date: ${formattedDate}`,
+
+                `Event Location: ${location}`,
+
+                guests
+                    ? `Guest / Crowd Size: ${guests}`
+                    : "",
+
+                "",
+
+                message
+                    ? `Additional Information: ${message}`
+                    : "",
+
+                "",
+
+                "Please let me know your availability. Thank you."
+
+            ]
+                .filter(
+                    (line, index, array) => {
+
+                        /*
+                           Keep intentional blank lines,
+                           but remove unnecessary empty fields.
+                        */
+
+                        if (line !== "") {
+                            return true;
+                        }
+
+
+                        const previousLine =
+                            array[index - 1];
+
+
+                        return (
+                            index > 0 &&
+                            previousLine !== ""
+                        );
+
+                    }
+                )
+                .join("\n");
+
+
+            /* ---------------------------------------------
+               WHATSAPP NUMBER
+            --------------------------------------------- */
+
+            const whatsappNumber =
+                "27722301683";
+
+
+            const whatsappURL =
+                `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+
+
+            /* ---------------------------------------------
+               OPEN WHATSAPP
+            --------------------------------------------- */
+
+            window.open(
+                whatsappURL,
+                "_blank",
+                "noopener,noreferrer"
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   BACK TO TOP BUTTON
+========================================================= */
+
+function updateBackToTop() {
+
+    if (!backToTop) {
+        return;
+    }
+
+
+    if (window.scrollY > 600) {
+
+        backToTop.classList.add(
+            "visible"
+        );
+
+    } else {
+
+        backToTop.classList.remove(
+            "visible"
+        );
+
+    }
+
+}
+
+
+window.addEventListener(
+    "scroll",
+    updateBackToTop,
+    {
+        passive: true
+    }
+);
+
+
+updateBackToTop();
+
+
+if (backToTop) {
+
+    backToTop.addEventListener(
+        "click",
+        () => {
+
+            window.scrollTo({
+
+                top: 0,
+
+                behavior:
+                    "smooth"
+
+            });
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   REVEAL CONTENT WHEN SCROLLING
+========================================================= */
+
+const revealTargets =
+    document.querySelectorAll(
+        [
+            ".section-heading",
+            ".about-text",
+            ".quote-card",
+            ".genre-card",
+            ".mixes-panel",
+            ".service-card",
+            ".event-item",
+            ".media-card",
+            ".booking-information",
+            ".booking-form",
+            ".map-wrapper"
+        ].join(",")
+    );
+
+
+if (
+    "IntersectionObserver" in window &&
+    revealTargets.length
+) {
+
+    const revealObserver =
+        new IntersectionObserver(
+
+            (entries, observer) => {
+
+                entries.forEach(
+                    (entry) => {
+
+                        if (
+                            entry.isIntersecting
+                        ) {
+
+                            entry.target.classList.add(
+                                "revealed"
+                            );
+
+                            observer.unobserve(
+                                entry.target
+                            );
+
+                        }
+
+                    }
+                );
+
+            },
+
+            {
+                threshold:
+                    0.1,
+
+                rootMargin:
+                    "0px 0px -45px 0px"
+            }
+
         );
 
 
-        hero.addEventListener(
-            "mouseleave",
+    revealTargets.forEach(
+        (target) => {
+
+            target.classList.add(
+                "reveal-item"
+            );
+
+            revealObserver.observe(
+                target
+            );
+
+        }
+    );
+
+} else {
+
+    revealTargets.forEach(
+        (target) => {
+
+            target.classList.add(
+                "revealed"
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   ACTIVE NAVIGATION LINK WHILE SCROLLING
+========================================================= */
+
+const sections =
+    document.querySelectorAll(
+        "main section[id]"
+    );
+
+
+const navigationLinks =
+    document.querySelectorAll(
+        '.nav a[href^="#"]'
+    );
+
+
+function updateActiveNavigation() {
+
+    if (
+        !sections.length ||
+        !navigationLinks.length
+    ) {
+
+        return;
+
+    }
+
+
+    let currentSection =
+        "";
+
+
+    const scrollPosition =
+        window.scrollY + 160;
+
+
+    sections.forEach(
+        (section) => {
+
+            const sectionTop =
+                section.offsetTop;
+
+
+            const sectionHeight =
+                section.offsetHeight;
+
+
+            if (
+                scrollPosition >= sectionTop &&
+                scrollPosition <
+                    sectionTop +
+                    sectionHeight
+            ) {
+
+                currentSection =
+                    section.getAttribute(
+                        "id"
+                    );
+
+            }
+
+        }
+    );
+
+
+    navigationLinks.forEach(
+        (link) => {
+
+            link.classList.remove(
+                "active-link"
+            );
+
+
+            const href =
+                link.getAttribute(
+                    "href"
+                );
+
+
+            if (
+                href ===
+                `#${currentSection}`
+            ) {
+
+                link.classList.add(
+                    "active-link"
+                );
+
+            }
+
+        }
+    );
+
+}
+
+
+window.addEventListener(
+    "scroll",
+    updateActiveNavigation,
+    {
+        passive: true
+    }
+);
+
+
+updateActiveNavigation();
+
+
+/* =========================================================
+   IMAGE ERROR HANDLING
+========================================================= */
+
+const mainDJPhoto =
+    document.getElementById(
+        "kenPhoto"
+    );
+
+
+if (mainDJPhoto) {
+
+    mainDJPhoto.addEventListener(
+        "error",
+        () => {
+
+            console.warn(
+                "Ken NXT SA hero image could not be loaded. Check that ken-nxt-sa.jpg is in the GitHub root folder."
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   LOGO ERROR HANDLING
+========================================================= */
+
+const siteLogos =
+    document.querySelectorAll(
+        ".site-logo"
+    );
+
+
+siteLogos.forEach(
+    (logo) => {
+
+        logo.addEventListener(
+            "error",
             () => {
 
-                heroGlow.style.transform =
-                    "";
+                console.warn(
+                    "Ken NXT logo could not be loaded. Check that KenNXT-wlogo.png is in the GitHub root folder and that the capitalization is correct."
+                );
 
             }
         );
 
     }
+);
 
 
-    /* =====================================================
-       SMOOTH ANCHOR LINKS
-    ===================================================== */
+/* =========================================================
+   INITIAL PAGE LOAD
+========================================================= */
 
-    document
-        .querySelectorAll(
-            'a[href^="#"]'
-        )
-        .forEach(link => {
+window.addEventListener(
+    "load",
+    () => {
 
-            link.addEventListener(
-                "click",
-                event => {
+        document.body.classList.add(
+            "page-loaded"
+        );
 
-                    const targetID =
-                        link.getAttribute(
-                            "href"
-                        );
-
-                    if (
-                        !targetID ||
-                        targetID === "#"
-                    ) {
-                        return;
-                    }
-
-
-                    const target =
-                        document.querySelector(
-                            targetID
-                        );
-
-
-                    if (target) {
-
-                        event.preventDefault();
-
-                        const headerHeight =
-                            document
-                                .querySelector(
-                                    ".site-header"
-                                )
-                                ?.offsetHeight ||
-                            0;
-
-
-                        const targetPosition =
-                            target.getBoundingClientRect()
-                                .top +
-                            window.scrollY -
-                            headerHeight -
-                            15;
-
-
-                        window.scrollTo({
-                            top:
-                                targetPosition,
-                            behavior:
-                                "smooth"
-                        });
-
-                    }
-
-                }
-            );
-
-        });
-
-
-    /* =====================================================
-       IMAGE ERROR HANDLING
-    ===================================================== */
-
-    document
-        .querySelectorAll(
-            "img"
-        )
-        .forEach(img => {
-
-            img.addEventListener(
-                "error",
-                () => {
-
-                    img.parentElement
-                        ?.classList.add(
-                            "image-missing"
-                        );
-
-                }
-            );
-
-        });
-
-
-    console.log(
-        "Ken NXT SA website loaded successfully 🔥"
-    );
-
-});
+    }
+);
